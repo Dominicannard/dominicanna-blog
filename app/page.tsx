@@ -4,7 +4,7 @@ import './styles.css';
 
 export default async function Homepage() {
   const posts = await reader.collections.posts.all();
-
+ 
   return (
     <div>
       <h1>Keystatic ⚡️</h1>
