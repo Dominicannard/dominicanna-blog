@@ -3,8 +3,7 @@ import { reader } from './reader';
 import './styles.css';
 
 export default async function Homepage() {
-  const r = await reader();
-  const posts = await r.collections.posts.all();
+  const posts = await reader.collections.posts.all();
 
   return (
     <div>

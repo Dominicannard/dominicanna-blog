@@ -8,14 +8,13 @@ export default config({
     repo: {
       owner: "Dominicannard",
       name: "dominicanna-blog"
-    }
+    } 
   },
   collections: {
     posts: collection({
       label: 'Posts',
       slugField: 'title',
       path: 'posts/*',
-      previewUrl: `/preview/start?branch={branch}&to=/posts/{slug}`,
       format: { contentField: 'content' },
       schema: {
         title: fields.slug({ name: { label: 'Title' } }),
