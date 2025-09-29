@@ -4,7 +4,11 @@ export const markdocConfig = fields.markdoc.createMarkdocConfig({});
 
 export default config({
   storage: {
-    kind: 'local',
+    kind: 'github',
+    repo: {
+      owner: "Dominicannard",
+      name: "dominicanna-blog"
+    } 
   },
   collections: {
     posts: collection({
