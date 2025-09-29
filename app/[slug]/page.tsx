@@ -10,7 +10,8 @@ export default async function Post(props: {
   const params = await props.params;
   const { slug } = params;
 
-  const post = await reader.collections.posts.read(slug);
+  const r = await reader();
+  const post = await r.collections.posts.read(slug);
 
   if (!post) return <div>Post not found!</div>;
 
@@ -33,7 +34,8 @@ export default async function Post(props: {
 }
 
 export async function generateStaticParams() {
-  const slugs = await reader.collections.posts.list();
+  const r = await reader();
+  const slugs = await r.collections.posts.list();
 
   return slugs.map(slug => ({
     slug,
