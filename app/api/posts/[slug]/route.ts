@@ -11,18 +11,17 @@ export async function GET(request: NextRequest, context: any) {
 
 	try {
 		const post = await Reader().collections.posts.read(slug);
-		const content = await post?.content();
-		//console.log(content);
 
 		if (!post) {
 			return NextResponse.json({ error: true }, { status: 404, statusText: "Not found" });
 		}
 
-		//post.authors.map
-
+		// Exclude the 'content' function from the post object itself before spreading
+		// and then fetch the rendered content separately.
+		const { content, ...restPost } = post;
 		const postData = {
-			...post,
-			content: await post.content(),
+			...restPost, // Spread the rest of the post properties
+			content: await post.content(), // Fetch and include the rendered content
 		};
 
 		return NextResponse.json(postData);

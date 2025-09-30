@@ -14,8 +14,10 @@ export async function GET(request: NextRequest) {
 		// };
 
 		const data = allPosts.map((post, index) => {
+			const { content, ...restEntry } = post.entry; // Exclude 'content'
 			return {
 				...post,
+				entry: restEntry, // Use the entry without 'content'
 				index: index + 1,
 			};
 		});

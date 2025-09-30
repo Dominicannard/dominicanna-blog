@@ -25,8 +25,10 @@ export async function GET(request: Request) {
 		// }
 
 		const dataPosts = posts.map((post, index) => {
+			const { content, ...restEntry } = post.entry; // Exclude 'content'
 			return {
 				...post,
+				entry: restEntry, // Use the entry without 'content'
 				index: index + 1,
 			};
 		});

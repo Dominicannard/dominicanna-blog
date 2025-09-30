@@ -7,8 +7,10 @@ export async function GET(request: NextRequest) {
 		const featuredPost = allPosts.filter((post) => post.entry.isFeatured);
 
 		const data = featuredPost.map((post, index) => {
+			const { content, ...restEntry } = post.entry; // Exclude 'content'
 			return {
 				...post,
+				entry: restEntry, // Use the entry without 'content'
 				index: index + 1,
 			};
 		});

@@ -1,4 +1,4 @@
-import PostGrid from "@/app/components/Post/PostGrid";
+import PostGridServer from "@/app/components/Post/PostGridServer";
 import { ICategory } from "@/app/keystatic/interface";
 import { Reader, getCategoryBySlug, sortPostsByPublishDate } from "@/app/keystatic/utils";
 import { notFound } from "next/navigation";
@@ -26,7 +26,7 @@ export default async function CategoryPage({ params }: { params: { slug: string 
 				</pre>
 			</div>
 			<div className="post-container mt-8">
-				<PostGrid posts={categoryPosts} categories={categories} size="lg" />
+				<PostGridServer posts={categoryPosts} categories={categories} size="lg" />
 			</div>
 		</div>
 	);

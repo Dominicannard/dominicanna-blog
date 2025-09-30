@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 
 interface ICategory {
   slug: string;
@@ -72,7 +73,7 @@ export default function FeaturedPost() {
     <>
       {loading ? (
         <div className="min-h-32 flex items-center justify-center">
-          <Loading text="Loading Featured Post" />
+          <Loading />
         </div>
       ) : (
         <section className="featured-post bg-black py-4 font-sans">
@@ -94,10 +95,13 @@ export default function FeaturedPost() {
                     {/* Image Container */}
                     <div className="relative h-48 overflow-hidden bg-gradient-to-br from-purple-500 via-pink-500 to-yellow-500">
                       {post.entry.heroImage ? (
-                        <img
+                        <Image
                           src={post.entry.heroImage}
                           alt={post.entry.title}
-                          className="w-full h-full object-cover"
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          style={{ objectFit: "cover" }}
+                          priority
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center">

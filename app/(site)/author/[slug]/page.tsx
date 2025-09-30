@@ -8,6 +8,7 @@ import PostGrid from "@/app/components/Post/PostGrid";
 import ShowcaseLink from "@/app/components/Post/ShowcaseLink";
 import ShowcaseYoutube from "@/app/components/Post/ShowcaseYoutube";
 import { Reader } from "@/app/keystatic/utils";
+import PostGridServer from "@/app/components/Post/PostGridServer";
 
 export default async function AuthorPage({ params }: { params: { slug: string } }) {
 	const { slug } = params;
@@ -64,7 +65,7 @@ export default async function AuthorPage({ params }: { params: { slug: string } 
 				{authorPosts.length > 0 && (
 					<div className="post-written my-5 pt-5 border-t">
 						<h3 className="text-xl my-5">Posts written</h3>
-						<PostGrid posts={authorPosts} categories={categories} />
+						<PostGridServer posts={authorPosts} categories={categories} />
 					</div>
 				)}
 			</div>
