@@ -24,6 +24,8 @@ export default async function HomePage() {
 	const latestPost = posts.slice(0, lastNumber);
 	const categories = await Reader().collections.categories.all();
 
+	console.log('homePage: ', homePage);
+
 	return (
 		<div className="homepage pb-12">
 			{homePage?.banner && homePage.banner.length > 0 && (

@@ -11,102 +11,109 @@ export default function Banner({ props }: { props: any }) {
 	const settings = {
 		dots: true,
 		arrows: false,
-		autoplay: false,
+		autoplay: true,
 		infinite: true,
 		autoplaySpeed: 5000,
-		speed: 2000,
+		speed: 800,
 		slidesToShow: 1,
 		slidesToScroll: 1,
 		adaptiveHeight: false,
 	};
 
-	// console.log('props: ', props);
+	// Group items into pairs for each slide
+	const groupedItems = [];
+	for (let i = 0; i < props?.length; i += 2) {
+		groupedItems.push(props.slice(i, i + 2));
+	}
 
 	return (
-		<div className="slider-container w-full m-auto max-w-7xl px-4 py-8">
-			<Slider {...settings}>
-				{props.map((item: any, index: number) => (
-					<div key={index}>
-						<Link href={item?.link || "/"} className="flex flex-col lg:flex-row gap-8 items-center group">
-							{/* Image Section */}
-							<div className="w-full lg:w-1/2">
-								<div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100">
-									<Image
-										src={item?.image || "/"}
-										alt={item?.title || "title"}
-										fill
-										className="object-cover transition-transform duration-300 group-hover:scale-105"
-									/>
-								</div>
+		<div className="w-full bg-white border-t-4 border-red-600">
+			<div className="w-full max-w-full px-8 py-8">
+				<Slider {...settings}>
+					{groupedItems?.map((group: any[], slideIndex: number) => (
+						<div key={slideIndex}>
+							<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+								{group.map((item: any, itemIndex: number) => {
+									console.log('item: ', item);
+									
+									return (
+										<div key={itemIndex} className="flex flex-col md:flex-row gap-6 items-start">
+											{/* Image Section */}
+											<div className="w-full md:w-1/2">
+												<div className="relative aspect-[4/3] overflow-hidden bg-gray-100">
+													<Image
+														src={item?.image || "/"}
+														alt={item?.title || "Banner image"}
+														fill
+														className="object-cover"
+													/>
+													{/* Vertical "CANNABIS" text */}
+													<div 
+														className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-300 opacity-30 text-[10px] font-bold tracking-widest select-none"
+														style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}
+													>
+														CANNABIS
+													</div>
+												</div>
+											</div>
+
+											{/* Content Section */}
+											<div className="w-full md:w-1/2 flex flex-col justify-between py-2">
+												<div>
+													<h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 leading-tight">
+														{item?.title}
+													</h2>
+
+													<p className="text-base md:text-lg text-gray-600 mb-4 leading-relaxed">
+														{item?.description?.length > 100
+															? item.description.slice(0, 99) + "..."
+															: item?.description}
+													</p>
+
+													{item?.author && (
+														<p className="text-sm text-red-500 mb-6">
+															Por {item.author}
+														</p>
+													)}
+												</div>
+
+												<Link 
+													href={item?.link || "/"} 
+													className="inline-block px-6 py-2.5 bg-red-500 text-white text-xs font-bold rounded-full hover:bg-red-600 transition-colors self-start uppercase tracking-wider"
+												>
+													Leer más
+												</Link>
+											</div>
+										</div>
+									)
+								})}
 							</div>
+						</div>
+					))}
+				</Slider>
 
-							{/* Content Section */}
-							<div className="w-full lg:w-1/2 flex flex-col gap-4">
-								{/* Trending Badge */}
-								<div className="flex items-center gap-3">
-									<span className="text-red-600 text-sm font-semibold uppercase tracking-wide">
-										Trending
-									</span>
-									<div className="flex gap-2">
-										<button 
-											className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-											onClick={(e) => e.preventDefault()}
-										>
-											<svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-												<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-											</svg>
-										</button>
-										<button 
-											className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-											onClick={(e) => e.preventDefault()}
-										>
-											<svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-												<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-											</svg>
-										</button>
-										<button 
-											className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-											onClick={(e) => e.preventDefault()}
-										>
-											<svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-												<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-											</svg>
-										</button>
-									</div>
-								</div>
-
-								{/* Title */}
-								<h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight group-hover:text-gray-700 transition-colors">
-									{item?.title}
-								</h2>
-
-								{/* Description */}
-								<p className="text-gray-700 text-base leading-relaxed line-clamp-4">
-									{item?.description}
-								</p>
-
-								{/* Meta Info */}
-								<div className="flex items-center gap-3 text-sm text-gray-600">
-									<span>2 hours ago</span>
-									<span>•</span>
-									<span>By Lucy Hiddleston</span>
-									<span>•</span>
-									<span>4min read</span>
-								</div>
-							</div>
-						</Link>
-					</div>
-				))}
-			</Slider>
-
-			{/* Breaking News Banner */}
-			<div className="mt-14 bg-red-600 rounded-lg p-4 flex items-center gap-4">
-				<span className="bg-white text-red-600 px-4 py-2 rounded font-semibold text-sm whitespace-nowrap">
-					Breaking News
-				</span>
-				<p className="text-white font-medium">
-					{"Kanye West says he's running for president in 2020."}
-				</p>
+				<style jsx global>{`
+					.slick-dots {
+						bottom: -45px;
+					}
+					
+					.slick-dots li {
+						margin: 0 4px;
+					}
+					
+					.slick-dots li button:before {
+						font-size: 10px;
+						color: #d1d5db;
+					}
+					
+					.slick-dots li.slick-active button:before {
+						color: #ef4444;
+					}
+					
+					.slick-prev, .slick-next {
+						display: none !important;
+					}
+				`}</style>
 			</div>
 		</div>
 	);
