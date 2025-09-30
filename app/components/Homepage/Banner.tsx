@@ -30,7 +30,7 @@ export default function Banner({ props }: { props: readonly (string | null)[] })
     const [error, setError] = useState<string | null>(null);
 
 	const settings = {
-		dots: true,
+		dots: false,
 		arrows: false,
 		autoplay: true,
 		infinite: true,
