@@ -12,7 +12,18 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 
 	try {
 		const posts = await Reader().collections.posts.all();
-		return NextResponse.json(posts);
+		// Filter posts based on search parameters if they were used.
+		// For now, we focus on excluding the 'content' function.
+
+		const data = posts.map((post) => {
+			const { content, ...restEntry } = post.entry; // Exclude 'content'
+			return {
+				...post,
+				entry: restEntry, // Use the entry without 'content'
+			};
+		});
+
+		return NextResponse.json(data);
 	} catch (error: any) {
 		return NextResponse.json({ error: `An error occurred: ${error.message}` }, { status: 200 });
 	}

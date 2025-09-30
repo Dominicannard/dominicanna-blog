@@ -1,170 +1,40 @@
 ---
-title: TailwindCss Container Queries Css
+title: 'Consultas de Contenedor: Adaptando la Información del Cannabis a Cada Pantalla'
+summary: >-
+  Descubre cómo las consultas de contenedor y el diseño responsivo son cruciales para presentar noticias y detalles de productos de cannabis de manera efectiva en cualquier dispositivo, desde tu móvil hasta tu escritorio.
 isFeatured: false
 publishDate: '2024-03-01'
 draft: false
 heroImage: /images/posts/container-queries/heroImage.webp
 postType: normal
 categories:
-  - web-developer
+  - noticias-cannabis
+  - tecnologia-cannabis
 authors:
   - paul-la
   - david
 ---
-# @tailwindcss/container-queries
+La industria del cannabis está evolucionando rápidamente, y también lo hace la forma en que se consume la información. Ya sean noticias de última hora sobre regulaciones, descripciones detalladas de productos de dispensarios o contenido educativo sobre cepas y métodos de consumo, presentar esta información de manera clara y accesible en todos los dispositivos es fundamental. Aquí es donde las técnicas modernas de desarrollo web, como las consultas de contenedor, juegan un papel vital.
 
-A plugin for Tailwind CSS v3.2+ that provides utilities for container queries.
+### La Importancia del Diseño Responsivo en la Industria del Cannabis
 
-## Installation
+En la era digital, la experiencia del usuario está fuertemente influenciada por la capacidad de un sitio web para adaptarse al tamaño de su pantalla. Para la industria del cannabis, esto es particularmente importante. Un cliente potencial que navega por el menú en línea de un dispensario en su teléfono necesita ver los detalles del producto, precios y disponibilidad con claridad. De manera similar, un lector de noticias en un escritorio necesita consumir artículos en profundidad sobre investigación o cambios en políticas de cannabis sin fatiga visual.
 
-Install the plugin from npm:
+Las consultas de contenedor, una potente característica de CSS, permiten que los elementos adapten sus estilos basándose en el tamaño de su contenedor padre, no solo en el viewport. Esto ofrece un nivel de control más granular para el diseño responsivo, asegurando que el contenido no solo sea legible, sino que también se presente de manera óptima, independientemente del diseño circundante o del dispositivo.
 
-```
-npm install @tailwindcss/container-queries
-```
+### Cómo las Consultas de Contenedor Benefician el Contenido de Cannabis
 
-Then add the plugin to your&nbsp;`tailwind.config.js`&nbsp;file:
+*   **Visualizaciones de Producto Optimizadas:** Los dispensarios en línea pueden usar consultas de contenedor para asegurar que las tarjetas de producto, imágenes y descripciones tengan un tamaño perfecto y sean legibles en cualquier pantalla, ya sea que se vean en un diseño compacto para móviles o en una cuadrícula espaciosa para escritorio.
+*   **Mejora del Consumo de Noticias:** Para los sitios de noticias sobre cannabis, las consultas de contenedor pueden ayudar a ajustar dinámicamente los diseños de los artículos, los tamaños de fuente y la escala de las imágenes. Esto significa que los artículos más largos se pueden presentar de manera más legible en pantallas más pequeñas, mientras que el contenido multimedia enriquecido se puede mostrar de manera efectiva en pantallas más grandes.
+*   **Menús Interactivos e Información:** A medida que el mercado del cannabis se diversifica, también lo hace la necesidad de elementos interactivos como selectores de cepas o calculadoras de dosis. Las consultas de contenedor pueden ayudar a que estos componentes adapten sus interfaces sin problemas, mejorando la participación del usuario.
+*   **Accesibilidad:** Al permitir un control preciso sobre cómo se muestra el contenido en diferentes tamaños de contenedor, las consultas de contenedor contribuyen a una mejor accesibilidad, asegurando que los usuarios con diversas necesidades puedan acceder y comprender la información.
 
-```
-// tailwind.config.js
-module.exports = {
-theme: {
-// ...
-},
-plugins: [
-require('@tailwindcss/container-queries'),
-// ...
-],
-}
-```
+### Implementación de Consultas de Contenedor para Sitios Web de Cannabis
 
-## Usage
+La adopción de consultas de contenedor, a menudo en conjunto con frameworks como Tailwind CSS (que ofrece plugins para esta funcionalidad), permite a los desarrolladores crear experiencias web más robustas y amigables para el usuario. Al marcar elementos como contenedores y aplicar estilos responsivos basados en sus dimensiones, los desarrolladores pueden crear sitios web que no solo son informativos, sino también altamente adaptables y atractivos para consumidores y entusiastas por igual.
 
-Start by marking an element as a container using the&nbsp;`@container`&nbsp;class, and then applying styles based on the size of that container using the container variants like&nbsp;`@md:`,&nbsp;`@lg:`, and&nbsp;`@xl:`:
+A medida que la industria del cannabis continúa creciendo e innovando, también lo hará la demanda de plataformas digitales sofisticadas. Adoptar tecnologías como las consultas de contenedor es esencial para las empresas que buscan ofrecer una presencia en línea fluida y efectiva.
 
-```
-<div class="@container">
-  <div class="@lg:underline">
-    <!-- This text will be underlined when the container is larger than `32rem` -->
-  </div>
-</div>
-```
+### Conclusión
 
-By default we provide&nbsp;[container sizes](https://github.com/tailwindlabs/tailwindcss-container-queries#configuration)&nbsp;from&nbsp;`@xs`&nbsp;(`20rem`) to&nbsp;`@7xl`&nbsp;(`80rem`).
-
-### Named containers
-
-You can optionally name containers using a&nbsp;`@container/{name}`&nbsp;class, and then include that name in the container variants using classes like&nbsp;`@lg/{name}:underline`:
-
-```
-<div class="@container/main">
-  <!-- ... -->
-  <div class="@lg/main:underline">
-    <!-- This text will be underlined when the "main" container is larger than `32rem` -->
-  </div>
-</div>
-```
-
-### Arbitrary container sizes
-
-In addition to using one of the&nbsp;[container sizes](https://github.com/tailwindlabs/tailwindcss-container-queries#configuration)&nbsp;provided by default, you can also create one-off sizes using any arbitrary value:
-
-```
-<div class="@container">
-  <div class="@[17.5rem]:underline">
-    <!-- This text will be underlined when the container is larger than `17.5rem` -->
-  </div>
-</div>
-```
-
-### Removing a container
-
-To stop an element from acting as a container, use the&nbsp;`@container-normal`&nbsp;class.
-
-### With a prefix
-
-If you have configured Tailwind to use a prefix, make sure to prefix both the&nbsp;`@container`&nbsp;class and any classes where you are using a container query modifier:
-
-```
-<div class="tw-@container">
-  <!-- ... -->
-  <div class="@lg:tw-underline">
-    <!-- ... -->
-  </div>
-</div>
-```
-
-## Configuration
-
-By default we ship with the following configured values:
-
-Table
-
-## Tables
-
-{% table %}
-- Name
-- Css
-- Width
----
-- @xs
-- @container (min-width: 20rem /* 320px */)
-- 320px
----
-- @sm
-- @container (min-width: 24rem /* 384px */)
-- 384px
----
-- @md
-- @container (min-width: 28rem /* 448px */)
-- 448px
----
-- @lg
-- @container (min-width: 32rem /* 512px */)
-- 512px
----
-- @xl
-- @container (min-width: 36rem /* 576px */)
-- 576px
----
-- @2xl
-- @container (min-width: 42rem /* 672px */)
-- 672px
----
-- @3xl
-- @container (min-width: 42rem /* 768px */)
-- 768px
----
-- @4xl
-- @container (min-width: 42rem /* 896px */)
-- 896px
----
-- @5xl
-- @container (min-width: 42rem /* 1024px */)
-- 1024px
----
-- @6xl
-- @container (min-width: 42rem /* 1152px */)
-- 1152px
----
-- @7xl
-- @container (min-width: 42rem /* 1280px */)
-- 1280px
-{% /table %}
-
-You can configure which values are available for this plugin under the&nbsp;`containers`&nbsp;key in your&nbsp;`tailwind.config.js`&nbsp;file:
-
-```
-// tailwind.config.js
-module.exports = {
-theme: {
-extend: {
-containers: {
-'2xs': '16rem',
-},
-},
-},
-}
-```
-
-Hello Minh and Phuc
+Las consultas de contenedor son un avance significativo en el diseño web responsivo, ofreciendo un control preciso sobre cómo el contenido se adapta a su entorno. Para la industria del cannabis, esta tecnología es invaluable para ofrecer información clara, accesible y atractiva, desde detalles de productos hasta análisis de mercado.
