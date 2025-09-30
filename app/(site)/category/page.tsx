@@ -2,26 +2,23 @@ import PostGrid from "@/app/components/Post/PostGrid";
 import { ICategory } from "@/app/keystatic/interface";
 import Link from "next/link";
 import React from "react";
+import { Reader, sortPostsByPublishDate } from "@/app/keystatic/utils";
 
 export default async function CategoryPage() {
 	//const slug = params.slug;
 	//if (!slug) notFound();
 
 	//const category = await getCategoryBySlug(slug);
-	const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/posts/`, {
-		next: {
-			revalidate: 120,
-		},
-	});
-	const categoryPosts = await response.json();
-
-	const resCategory = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/posts/category`, {
-		next: {
-			revalidate: 120,
-		},
+	let categoryPosts = await Reader.collections.posts.all();
+	categoryPosts = sortPostsByPublishDate(categoryPosts);
+	const data = categoryPosts.map((post, index) => {
+		return {
+			...post,
+			index: index + 1,
+		};
 	});
 
-	const categories: ICategory[] = await resCategory.json();
+	const categories: ICategory[] = await Reader.collections.categories.all();
 
 	return (
 		<div className="category-page w-full p-3 lg:p-5 @container">

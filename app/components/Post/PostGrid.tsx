@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 const ScriptClient = dynamic(() => import("@/app/components/ScriptClient"), { ssr: false });
 
 const getCategories = async () => {
-	const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/posts/category`, {
+	const res = await fetch('/api/posts/category', {
 		next: {
 			revalidate: 300,
 		},

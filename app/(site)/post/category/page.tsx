@@ -1,15 +1,21 @@
 import React from "react";
 import { ICategory } from "@/app/keystatic/interface";
 import Link from "next/link";
+import { Reader } from "@/app/keystatic/utils";
 
 export default async function CategoryPage() {
-	const resCategory = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/posts/category`, {
-		next: {
-			revalidate: 120,
-		},
-	});
+	let categories = await Reader.collections.categories.all();
+	const allPosts = await Reader.collections.posts.all();
 
-	const categories: ICategory[] = await resCategory.json();
+	const getPosts = (slug: string) => {
+		const posts = allPosts.filter((post) => post.entry.categories.includes(slug));
+		return posts.length;
+	};
+
+	categories = categories.map((category) => ({
+		...category,
+		total: getPosts(category.slug),
+	})) as ICategory[];
 
 	return (
 		<div className="category-page w-full p-3 lg:p-5 @container">
