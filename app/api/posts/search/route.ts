@@ -16,10 +16,11 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 		// For now, we focus on excluding the 'content' function.
 
 		const data = posts.map((post) => {
-			const { content, ...restEntry } = post.entry; // Exclude 'content'
+			const { content: entryContent, ...restEntry } = post.entry; // Exclude 'content' from entry
+			const { content, ...restPost } = post; // Exclude 'content' from the post object
 			return {
-				...post,
-				entry: restEntry, // Use the entry without 'content'
+				...restPost, // Spread the post object excluding its 'content' function
+				entry: restEntry, // Use the entry without its 'content' function
 			};
 		});
 
