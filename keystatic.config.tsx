@@ -33,7 +33,7 @@ export default config({
 			label: "Posts",
 			slugField: "title",
 			path: "app/content/posts/*",
-			previewUrl: `/preview/start?branch={branch}&to=/posts/{slug}`,
+			previewUrl: `/preview/start?branch={branch}&to=/post/{slug}`,
 			format: { contentField: "content" },
 			entryLayout: "content",
 			columns: ["title", "publishDate", "draft", "heroImage"],
@@ -202,7 +202,7 @@ export default config({
 			path: "app/content/authors/*",
 			format: { data: "json" },
 			columns: ["name", "avatar"],
-			previewUrl: "https://github.com/",
+			previewUrl: `/preview/start?branch={branch}&to=/author/{slug}`,
 			schema: {
 				name: fields.slug({ name: { label: "Author Name" } }),
 				avatar: fields.image({
