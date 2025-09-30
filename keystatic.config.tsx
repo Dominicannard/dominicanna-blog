@@ -30,7 +30,7 @@ export default config({
 
 	collections: {
 		posts: collection({
-			label: "Posts",
+			label: "Posts", 
 			slugField: "title",
 			path: "app/content/posts/*",
 			previewUrl: `/preview/start?branch={branch}&to=/post/{slug}`,
@@ -282,20 +282,17 @@ export default config({
 			format: "json",
 			schema: {
 				banner: fields.array(
-					fields.object({
-						image: fields.image({
-							label: "Banner Image",
-							//directory: "app/content/banner/",
-							directory: "public/images/homepage/",
-							publicPath: "/images/homepage/",
-						}),
-						title: fields.text({ label: "Banner Title" }),
-						description: fields.text({ label: "Banner Description", multiline: true }),
-						link: fields.url({ label: "Banner Link" }),
+					fields.relationship({
+						label: "Banner Post",
+						collection: "posts",
+						// The default viewer for relationships usually shows the slugField or title.
+						// If a custom viewer is needed, it can be configured here.
 					}),
 					{
 						label: "Banner Item",
-						itemLabel: (props) => props.fields.title.value,
+						// This itemLabel will display the selected post's title.
+						// Keystatic automatically uses the 'title' field from the 'posts' collection for display.
+						itemLabel: (item) => item.value ?? "Select a Post",
 					}
 				),
 
