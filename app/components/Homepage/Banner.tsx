@@ -101,21 +101,18 @@ export default function Banner({ props }: { props: readonly (string | null)[] })
 		groupedItems.push(postsData.slice(i, i + 2));
 	}
 
-	console.log('Received slugs: ', props);
-    console.log('Fetched posts data: ', postsData);
+	if (loading) {
+			return <div className="w-full h-64 flex items-center justify-center">Loading banner posts...</div>;
+	}
 
-    if (loading) {
-        return <div className="w-full h-64 flex items-center justify-center">Loading banner posts...</div>;
-    }
+	if (error) {
+			return <div className="w-full h-64 flex items-center justify-center text-red-500">{error}</div>;
+	}
 
-    if (error) {
-        return <div className="w-full h-64 flex items-center justify-center text-red-500">{error}</div>;
-    }
-
-    if (postsData.length === 0) {
-        // This message will show if props was empty, or if all fetches failed, or if no posts were found for the slugs.
-        return <div className="w-full h-64 flex items-center justify-center">No posts found for the banner.</div>;
-    }
+	if (postsData.length === 0) {
+			// This message will show if props was empty, or if all fetches failed, or if no posts were found for the slugs.
+			return <div className="w-full h-64 flex items-center justify-center">No posts found for the banner.</div>;
+	}
 
 	return (
 		<div className="w-full bg-white border-t-4 border-red-600">
@@ -125,8 +122,6 @@ export default function Banner({ props }: { props: readonly (string | null)[] })
 						<div key={slideIndex}>
 							<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 								{group.map((item: Post, itemIndex: number) => { // Use Post type for item
-									console.log('Rendering item: ', item);
-									
 									return (
 										<div key={itemIndex} className="flex flex-col md:flex-row gap-6 items-start">
 											{/* Image Section */}
@@ -158,7 +153,7 @@ export default function Banner({ props }: { props: readonly (string | null)[] })
 													<p className="text-base md:text-lg text-gray-600 mb-4 leading-relaxed">
 														{item?.summary?.length > 100
 															? item.summary.slice(0, 99) + "..."
-															: item?.summary} {/* Use fetched data */}
+															: item?.summary}
 													</p>
 
 													{item?.authors && item.authors.length > 0 && ( // Check for authors array and if it's not empty

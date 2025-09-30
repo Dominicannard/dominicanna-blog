@@ -4,10 +4,11 @@ import PostGrid from "../Post/PostGrid";
 import { IPost, ICategory } from "@/app/keystatic/interface";
 import { Loading } from "./FeaturedPost";
 
-export default function LatestPost() {
+export default function CategoryPost({ categorySlug }: { categorySlug: string }) {
 	const [posts, setPosts] = useState<IPost[]>([]);
 	const [categories, setCategories] = useState<ICategory[]>([]);
 	const [loading, setLoading] = useState(true);
+	const [categoryTitle, setCategoryTitle] = useState<string>("");
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -22,8 +23,19 @@ export default function LatestPost() {
 				const categoriesRes = await fetch('/api/posts/category');
 				const categoriesData = await categoriesRes.json();
 				
-				setPosts(postsData);
+				// Filter posts by category slug (posts can have multiple categories)
+				const filteredPosts = postsData.filter((post: IPost) => 
+					post.entry.categories && post.entry.categories.includes(categorySlug)
+				);
+				
+				// Find category name for title
+				const category = categoriesData.find((cat: ICategory) => 
+					cat.slug === categorySlug
+				);
+
+				setPosts(filteredPosts);
 				setCategories(categoriesData);
+				setCategoryTitle(category?.entry?.category || categorySlug);
 			} catch (error) {
 				console.error('Error fetching data:', error);
 			} finally {
@@ -32,7 +44,7 @@ export default function LatestPost() {
 		};
 
 		fetchData();
-	}, []);
+	}, [categorySlug]);
 
 	if (loading) {
 		return (
@@ -46,9 +58,9 @@ export default function LatestPost() {
 				posts={posts}
 				categories={categories}
 				layout="grid"
-				title="Lo Más Reciente"
+				title={categoryTitle}
 				viewMoreButton={true}
-				viewMoreLimit={9}
+				viewMoreLimit={3}
 			/>
 		</div>
 	);
