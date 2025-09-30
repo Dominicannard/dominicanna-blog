@@ -4,7 +4,25 @@ export interface IPost {
 	slug: string;
 	entry: {
 		title: string;
+		summary: string;
 		content: () => Promise<DocumentElement[]>;
+		isFeatured: boolean;
+		publishDate: string;
+		draft: boolean;
+		heroImage: string | null;
+		postType: "normal" | "gallery" | "poetry" | "video";
+		categories: readonly string[];
+		authors: readonly string[];
+		customClasses: string;
+	};
+}
+
+export interface IPostResolved {
+	slug: string;
+	entry: {
+		title: string;
+		summary: string;
+		content: DocumentElement[];
 		isFeatured: boolean;
 		publishDate: string;
 		draft: boolean;

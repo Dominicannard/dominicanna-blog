@@ -18,7 +18,7 @@
 
 body {
 	color: rgb(var(--foreground-rgb));
-	/* background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb)); */
+	background-color: #F1F2F3;
 }
 
 h1,
@@ -147,9 +147,6 @@ h6 {
 .homepage section .section-title {
 	@apply mt-0 mb-2 lg:mb-5 text-2xl lg:text-3xl 2xl:text-4xl;
 	/* padding: 20px; */
-}
-.homepage section:nth-child(2n + 1) {
-	background-color: rgb(226 232 240);
 }
 
 .prose {

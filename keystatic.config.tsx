@@ -41,6 +41,10 @@ export default config({
 				title: fields.slug({
 					name: { label: "Title" },
 				}),
+				summary: fields.text({
+					label: "Summary",
+					multiline: true,
+				}),
 				content: fields.document({
 					label: "Content",
 

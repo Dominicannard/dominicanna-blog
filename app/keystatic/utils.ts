@@ -1,6 +1,6 @@
 import keystaticConfig from "@/keystatic.config";
 import { createReader } from "@keystatic/core/reader";
-import { IPost, ICategory } from "@/app/keystatic/interface";
+import { IPost, ICategory, IPostResolved } from "@/app/keystatic/interface";
 import { createGitHubReader } from '@keystatic/core/reader/github';
 
 import { cache } from 'react';
@@ -32,8 +32,8 @@ export const Reader = cache(() => {
 
 // export const Reader = createReader(process.cwd(), keystaticConfig);
 
-export const sortPostsByPublishDate = (posts: IPost[]): IPost[] => {
-	return posts.slice().sort((postA: IPost, postB: IPost) => {
+export const sortPostsByPublishDate = <T extends IPost | IPostResolved>(posts: T[]): T[] => {
+	return posts.slice().sort((postA: T, postB: T) => {
 		// Handle cases where publishDate is missing
 		if (!postA.entry.publishDate) {
 			return 1; // Move posts without publishDate to the end
@@ -54,10 +54,37 @@ export const sortPostsByPublishDate = (posts: IPost[]): IPost[] => {
 export const getCategoryBySlug = async (slug: string) => {
 	const categories = await Reader().collections.categories.all();
 
-	const category: ICategory[] = categories.filter((c) => c.slug === slug);
+	const category: ICategory[] = categories.filter((c: ICategory) => c.slug === slug);
 	if (category.length > 0) {
 		return category[0];
 	}
 
 	return null;
+};
+
+// Helper function for display time elapsed since post date
+export const formatTimeAgo = (dateString: string): string => {
+	try {
+		const postDate = new Date(dateString);
+		const now = new Date();
+		const diffInHours = Math.floor(
+			(now.getTime() - postDate.getTime()) / (1000 * 60 * 60)
+		);
+
+		if (diffInHours < 24) {
+			return `${diffInHours} hours ago`;
+		} else if (diffInHours < 24 * 30) {
+			const diffInDays = Math.floor(diffInHours / 24);
+			return `${diffInDays} days ago`;
+		} else {
+			return postDate.toLocaleDateString("en-US", {
+				year: "numeric",
+				month: "short",
+				day: "numeric",
+			});
+		}
+	} catch (e) {
+		// Fallback for invalid date strings
+		return "N/A";
+	}
 };
