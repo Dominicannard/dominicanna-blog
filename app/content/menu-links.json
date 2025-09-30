@@ -1,0 +1,20 @@
+{
+  "items": [
+    {
+      "menu": "About Us",
+      "url": "/about"
+    },
+    {
+      "menu": "Posts",
+      "url": "/post"
+    },
+    {
+      "menu": "Categories",
+      "url": "/post/category"
+    },
+    {
+      "menu": "Authors",
+      "url": "/author"
+    }
+  ]
+}
