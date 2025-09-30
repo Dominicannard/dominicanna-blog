@@ -15,7 +15,7 @@ export default async function SocialLinks() {
 							<li className="py-2">
 								<Link
 									className="alink"
-									href={`https://twitter.com/${socialLinks.twitter}`}
+									href={`#`}
 									target="_blank"
 									rel="noopener noreferrer"
 								>
@@ -27,7 +27,7 @@ export default async function SocialLinks() {
 							<li className="py-2 border-t">
 								<Link
 									className="alink"
-									href={`https://github.com/${socialLinks.github}`}
+									href={`#`}
 									target="_blank"
 									rel="noopener noreferrer"
 								>
@@ -39,7 +39,7 @@ export default async function SocialLinks() {
 							<li className="py-2 border-t">
 								<Link
 									className="alink"
-									href={`https://linkedin.com/in/${socialLinks.linkedin}`}
+									href={`#`}
 									target="_blank"
 									rel="noopener noreferrer"
 								>
@@ -51,7 +51,7 @@ export default async function SocialLinks() {
 							<li className="py-2 border-t">
 								<Link
 									className="alink"
-									href={`https://facebook.com/${socialLinks.facebook}`}
+									href={`#`}
 									target="_blank"
 									rel="noopener noreferrer"
 								>
