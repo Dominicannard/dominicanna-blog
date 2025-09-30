@@ -1,8 +1,36 @@
 import keystaticConfig from "@/keystatic.config";
 import { createReader } from "@keystatic/core/reader";
 import { IPost, ICategory } from "@/app/keystatic/interface";
+import { createGitHubReader } from '@keystatic/core/reader/github';
 
-export const Reader = createReader(process.cwd(), keystaticConfig);
+import { cache } from 'react';
+import { cookies, draftMode } from 'next/headers';
+
+export const Reader = cache(() => {
+	let isDraftModeEnabled = false;
+	// draftMode throws in e.g. generateStaticParams
+	try {
+		isDraftModeEnabled = draftMode().isEnabled;
+	} catch {}
+
+	if (isDraftModeEnabled) {
+		const branch = cookies().get('ks-branch')?.value;
+
+		if (branch) {
+			return createGitHubReader(keystaticConfig, {
+				// Replace the below with your repo org an name
+				repo: 'Dominicannard/dominicanna-blog', 
+				ref: branch,
+				// Assuming an existing GitHub app
+				token: cookies().get('keystatic-gh-access-token')?.value,
+			});
+		}
+	}
+	// If draft mode is off, use the regular reader
+	return createReader(process.cwd(), keystaticConfig);
+});
+
+// export const Reader = createReader(process.cwd(), keystaticConfig);
 
 export const sortPostsByPublishDate = (posts: IPost[]): IPost[] => {
 	return posts.slice().sort((postA: IPost, postB: IPost) => {
@@ -24,7 +52,7 @@ export const sortPostsByPublishDate = (posts: IPost[]): IPost[] => {
 };
 
 export const getCategoryBySlug = async (slug: string) => {
-	const categories = await Reader.collections.categories.all();
+	const categories = await Reader().collections.categories.all();
 
 	const category: ICategory[] = categories.filter((c) => c.slug === slug);
 	if (category.length > 0) {
