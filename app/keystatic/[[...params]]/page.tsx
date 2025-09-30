@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import React from "react";
+import KeystaticApp from "../keystatic";
 
 export const metadata: Metadata = {
 	title: "KeyStatic Admin UI",
@@ -7,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-	return null;
+	return <KeystaticApp />;
 }
