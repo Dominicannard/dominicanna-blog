@@ -24,6 +24,7 @@ interface IPost {
 }
 
 
+import Image from "next/image"; // Ensure Image is imported for next/image usage
 import React, { useEffect, useState } from "react";
 
 // --- START: Self-contained Loading Component (Kept for compilation) ---
@@ -114,7 +115,6 @@ export default function FeaturedPost() {
         </div>
       ) : (
         <section className="featured-post bg-gray-50 py-8 font-sans">
-          <script src="https://cdn.tailwindcss.com"></script>
           <div className="max-w-3xl mx-auto px-4">
             <div className="mb-6">
               {/* Tabs and View Toggle */}
@@ -176,19 +176,20 @@ export default function FeaturedPost() {
                       {/* Image */}
                       <div className="relative aspect-video overflow-hidden bg-gray-200">
                         {post.entry.heroImage && (
-                          <img // Using standard <img> tag
+                          <Image // Using next/image for optimization
                             src={post.entry.heroImage}
                             alt={post.entry.title}
+                            fill // Added fill prop for responsive image within relative container
                             className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
                           />
                         )}
                         {/* Correctly render the Category Badge by checking categories array and returning JSX */}
-                        {post.entry.categories && post.entry.categories.length > 0 && (
-                          <span className="absolute top-3 left-3 bg-red-600 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase z-10">
-                            {/* Find the name of the first category by slug, or use the slug itself */}
-                            {categories.find(c => c.slug === post.entry.categories![0])?.name || post.entry.categories[0]}
-                          </span>
-                        )}
+                      {post.entry.categories && post.entry.categories.length > 0 && (
+                        <span className="absolute top-3 left-3 bg-red-600 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase z-10">
+                          {/* Find the name of the first category by slug, or use the slug itself */}
+                          {categories.find((c: ICategory) => c.slug === post.entry.categories![0])?.name || post.entry.categories[0]}
+                        </span>
+                      )}
                       </div>
 
                       {/* Content */}

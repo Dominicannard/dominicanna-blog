@@ -105,7 +105,7 @@ export default function Banner({ props }: { props: any }) {
 					Breaking News
 				</span>
 				<p className="text-white font-medium">
-					Kanye West says he's running for president in 2020.
+					{"Kanye West says he's running for president in 2020."}
 				</p>
 			</div>
 		</div>

@@ -44,6 +44,7 @@ export default function SearchPage() {
 
 	useEffect(() => {
 		if (posts) searchPost(query);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [loading, query]);
 
 	const searchPost = async (query: string) => {
@@ -58,7 +59,7 @@ export default function SearchPage() {
 		const q = query.toLowerCase();
 		//let results: IPost[] = [];
 		const results = posts.filter(
-			(post) =>
+			(post: any) =>
 				post.slug.includes(q) ||
 				post.entry.title.toLowerCase().includes(q) ||
 				post.entry.categories.some((category) => category.toLowerCase().includes(q))
