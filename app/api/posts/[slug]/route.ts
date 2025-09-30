@@ -10,7 +10,7 @@ export async function GET(request: NextRequest, context: any) {
 	console.log("Get API Post " + slug);
 
 	try {
-		const post = await Reader.collections.posts.read(slug);
+		const post = await Reader().collections.posts.read(slug);
 		const content = await post?.content();
 		//console.log(content);
 

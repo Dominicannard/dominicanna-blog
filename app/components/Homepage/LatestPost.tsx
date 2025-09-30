@@ -5,7 +5,7 @@ import { IPost } from "@/app/keystatic/interface";
 import { Reader, sortPostsByPublishDate } from "@/app/keystatic/utils";
 
 export default async function LatestPost() {
-	const posts = await Reader.collections.posts.all();
+	const posts = await Reader().collections.posts.all();
 	const sortedPosts = sortPostsByPublishDate(posts);
 	const lastPosts = sortedPosts.slice(0, 6);
 
@@ -14,7 +14,7 @@ export default async function LatestPost() {
 		index: index + 1,
 	}));
 
-	const categories = await Reader.collections.categories.all();
+	const categories = await Reader().collections.categories.all();
 
 	return (
 		<div>

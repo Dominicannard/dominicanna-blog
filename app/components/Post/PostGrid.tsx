@@ -28,7 +28,7 @@ export default async function PostGrid({
 	let gridClass = "@2xl:grid-cols-2 @xl:gap-6 @5xl:grid-cols-3 @6xl:gap-8";
 	let textSize = "text-md";
 	// if (!posts) {
-	// 	posts = await Reader.collections.posts.all();
+	// 	posts = await Reader().collections.posts.all();
 	// }
 
 	// posts = sortPostsByPublishDate(posts);

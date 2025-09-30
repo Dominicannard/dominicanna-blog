@@ -10,7 +10,7 @@ const localMode: LocalConfig["storage"] = {
 const githubMode: GithubConfig["storage"] = {
 	kind: 'github',
 	repo: {
-		owner: "Dominicannard",
+		owner: "Dominicannard", 
 		name: "dominicanna-blog"
 	}
 };
@@ -33,6 +33,7 @@ export default config({
 			label: "Posts",
 			slugField: "title",
 			path: "app/content/posts/*",
+			previewUrl: `/preview/start?branch={branch}&to=/posts/{slug}`,
 			format: { contentField: "content" },
 			entryLayout: "content",
 			columns: ["title", "publishDate", "draft", "heroImage"],

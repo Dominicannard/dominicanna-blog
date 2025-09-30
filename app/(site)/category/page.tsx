@@ -9,7 +9,7 @@ export default async function CategoryPage() {
 	//if (!slug) notFound();
 
 	//const category = await getCategoryBySlug(slug);
-	let categoryPosts = await Reader.collections.posts.all();
+	let categoryPosts = await Reader().collections.posts.all();
 	categoryPosts = sortPostsByPublishDate(categoryPosts);
 	const data = categoryPosts.map((post, index) => {
 		return {
@@ -18,7 +18,7 @@ export default async function CategoryPage() {
 		};
 	});
 
-	const categories: ICategory[] = await Reader.collections.categories.all();
+	const categories: ICategory[] = await Reader().collections.categories.all();
 
 	return (
 		<div className="category-page w-full p-3 lg:p-5 @container">

@@ -8,10 +8,10 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-	const allPosts = await Reader.collections.posts.all();
+	const allPosts = await Reader().collections.posts.all();
 	const posts = sortPostsByPublishDate(allPosts);
 
-	const categories = await Reader.collections.categories.all();
+	const categories = await Reader().collections.categories.all();
 
 	return (
 		<div className="posts w-full pb-10">

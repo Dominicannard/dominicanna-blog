@@ -11,7 +11,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 	// console.log(searchParams);
 
 	try {
-		const posts = await Reader.collections.posts.all();
+		const posts = await Reader().collections.posts.all();
 		return NextResponse.json(posts);
 	} catch (error: any) {
 		return NextResponse.json({ error: `An error occurred: ${error.message}` }, { status: 200 });

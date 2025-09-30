@@ -15,14 +15,14 @@ import Technology from "@/app/components/Homepage/Technology";
 // });
 
 export default async function HomePage() {
-	const homePage = await Reader.singletons.homepage.read();
+	const homePage = await Reader().singletons.homepage.read();
 	const lastNumber = homePage?.latestPost || 6;
 
-	let posts = await Reader.collections.posts.all();
+	let posts = await Reader().collections.posts.all();
 	posts = posts.filter((post) => !post.entry.draft);
 	posts = sortPostsByPublishDate(posts);
 	const latestPost = posts.slice(0, lastNumber);
-	const categories = await Reader.collections.categories.all();
+	const categories = await Reader().collections.categories.all();
 
 	return (
 		<div className="homepage pb-12">

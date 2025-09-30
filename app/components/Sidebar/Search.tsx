@@ -6,7 +6,7 @@ import { Reader } from "@/app/keystatic/utils";
 import { useRouter, useSearchParams } from "next/navigation";
 
 export default function Search() {
-	//const allPosts = await Reader.collections.posts.all();
+	//const allPosts = await Reader().collections.posts.all();
 	//const searchPosts = allPosts.filter((post) => post.entry.content.toString().includes(query));
 
 	const searchParams = useSearchParams();
@@ -24,7 +24,7 @@ export default function Search() {
 	const [searchText, setSearchText] = useState("");
 
 	// const getPosts = async (query: string) => {
-	// 	const allPosts = await Reader.collections.posts.all();
+	// 	const allPosts = await Reader().collections.posts.all();
 	// 	const searchPosts = allPosts.filter((post) => post.entry.content.toString().includes(query));
 	// 	setResultsPosts(searchPosts);
 	// };

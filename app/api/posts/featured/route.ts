@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
 	try {
-		const allPosts = await Reader.collections.posts.all();
+		const allPosts = await Reader().collections.posts.all();
 		const featuredPost = allPosts.filter((post) => post.entry.isFeatured);
 
 		const data = featuredPost.map((post, index) => {

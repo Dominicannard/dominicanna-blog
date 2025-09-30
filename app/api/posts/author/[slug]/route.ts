@@ -6,7 +6,7 @@ export async function GET(request: NextRequest, context: any): Promise<NextRespo
 	const slug = params.slug;
 
 	try {
-		const posts = await Reader.collections.posts.all();
+		const posts = await Reader().collections.posts.all();
 		const postCategory = posts.filter((post) => post.entry.authors.includes(slug));
 		return NextResponse.json(postCategory);
 	} catch (error: any) {

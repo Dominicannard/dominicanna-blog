@@ -3,8 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
 	try {
-		const allPosts = await Reader.collections.posts.all();
-		//const categories = await Reader.collections.categories.all();
+		const allPosts = await Reader().collections.posts.all();
+		//const categories = await Reader().collections.categories.all();
 
 		// const getCategory = (cate: readonly string[]) => {
 		// 	const category = cate.map(async (item: string) => {

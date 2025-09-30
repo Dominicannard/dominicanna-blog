@@ -15,11 +15,11 @@ export default async function AuthorPage({ params }: { params: { slug: string } 
 		notFound();
 	}
 
-	const author = await Reader.collections.authors.read(slug);
+	const author = await Reader().collections.authors.read(slug);
 
 	if (!author) notFound();
-	const allPosts = await Reader.collections.posts.all();
-	const categories = await Reader.collections.categories.all();
+	const allPosts = await Reader().collections.posts.all();
+	const categories = await Reader().collections.categories.all();
 	const authorPosts = allPosts.filter((post) => post.entry.authors.includes(slug));
 
 	return (
@@ -73,7 +73,7 @@ export default async function AuthorPage({ params }: { params: { slug: string } 
 }
 
 export async function generateStaticParams() {
-	const authorSlugs = await Reader.collections.authors.list();
+	const authorSlugs = await Reader().collections.authors.list();
 
 	return authorSlugs.map((authorSlug) => ({ slug: authorSlug }));
 }

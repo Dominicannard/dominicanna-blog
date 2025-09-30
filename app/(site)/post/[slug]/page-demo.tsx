@@ -29,7 +29,7 @@ export async function generateMetadata({
 	const slug = params.slug;
 
 	// fetch data
-	const post = await Reader.collections.posts.read(slug);
+	const post = await Reader().collections.posts.read(slug);
 
 	// optionally access and extend (rather than replace) parent metadata
 	//const previousImages = (await parent).openGraph?.images || [];
@@ -45,13 +45,13 @@ export async function generateMetadata({
 
 export default async function Post({ params }: { params: { slug: string } }) {
 	const slug = params.slug;
-	const post = await Reader.collections.posts.read(slug);
+	const post = await Reader().collections.posts.read(slug);
 
 	if (!post) notFound();
 
 	const authors = await Promise.all(
 		post.authors.map(async (authorSlug) => ({
-			...(await Reader.collections.authors.read(authorSlug)),
+			...(await Reader().collections.authors.read(authorSlug)),
 			slug: authorSlug,
 		}))
 	);
@@ -139,7 +139,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
 }
 
 export async function generateStaticParams() {
-	const postSlugs = await Reader.collections.posts.list();
+	const postSlugs = await Reader().collections.posts.list();
 
 	return postSlugs.map((postSlug) => ({ slug: postSlug }));
 }

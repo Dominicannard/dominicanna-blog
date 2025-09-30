@@ -4,8 +4,8 @@ import Link from "next/link";
 import { Reader } from "@/app/keystatic/utils";
 
 export default async function Categories() {
-	const categories = await Reader.collections.categories.all();
-	const allPosts = await Reader.collections.posts.all();
+	const categories = await Reader().collections.categories.all();
+	const allPosts = await Reader().collections.posts.all();
 
 	const getPosts = (slug: string) => {
 		const posts = allPosts.filter((post) => post.entry.categories.includes(slug));

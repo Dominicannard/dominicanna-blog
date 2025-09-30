@@ -5,7 +5,7 @@ import { Reader } from "../keystatic/utils";
 import Link from "next/link";
 
 export default async function Footer() {
-	const menuLinks = await Reader.singletons.menuLinks.read();
+	const menuLinks = await Reader().singletons.menuLinks.read();
 
 	return (
 		<footer className="footer border-t border-gray-300 bg-slate-200/80 p-3 lg:p-5">

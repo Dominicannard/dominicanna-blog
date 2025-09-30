@@ -9,9 +9,9 @@ export default async function CategoryPage({ params }: { params: { slug: string 
 
 	if (!slug) notFound();
 
-	const categories = await Reader.collections.categories.all();
-	const category = await Reader.collections.categories.read(slug);
-	const allPosts = await Reader.collections.posts.all();
+	const categories = await Reader().collections.categories.all();
+	const category = await Reader().collections.categories.read(slug);
+	const allPosts = await Reader().collections.posts.all();
 	const posts = sortPostsByPublishDate(allPosts);
 	const categoryPosts = posts.filter((post) => post.entry.categories.includes(slug));
 
@@ -33,7 +33,7 @@ export default async function CategoryPage({ params }: { params: { slug: string 
 }
 
 export async function generateStaticParams() {
-	const slugs = await Reader.collections.categories.list();
+	const slugs = await Reader().collections.categories.list();
 
 	return slugs.map((slug) => ({ slug: slug }));
 }

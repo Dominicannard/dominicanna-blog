@@ -4,8 +4,8 @@ import Link from "next/link";
 import { Reader } from "@/app/keystatic/utils";
 
 export default async function CategoryPage() {
-	let categories = await Reader.collections.categories.all();
-	const allPosts = await Reader.collections.posts.all();
+	let categories = await Reader().collections.categories.all();
+	const allPosts = await Reader().collections.posts.all();
 
 	const getPosts = (slug: string) => {
 		const posts = allPosts.filter((post) => post.entry.categories.includes(slug));
@@ -69,7 +69,7 @@ export default async function CategoryPage() {
 }
 
 // export async function generateStaticParams() {
-// 	const slugs = await Reader.collections.categories.list();
+// 	const slugs = await Reader().collections.categories.list();
 
 // 	return slugs.map((slug) => ({ slug: slug }));
 // }

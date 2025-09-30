@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: Request) {
 	try {
-		const posts = await Reader.collections.posts.all();
+		const posts = await Reader().collections.posts.all();
 
 		//const pathName = request.nextUrl.pathname;
 		//const slug = pathName.substring(pathName.lastIndexOf("/") + 1) || "slug";

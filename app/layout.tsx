@@ -3,6 +3,7 @@ import { Inter, Anton, Lobster, Great_Vibes, Style_Script, Calistoga, Rowdies, R
 import "./globals.css";
 import { Suspense } from "react";
 import Loading from "./components/Loading";
+import { cookies, draftMode } from 'next/headers';
 
 const inter = Inter({ subsets: ["latin"], variable: "--inter" });
 
@@ -48,10 +49,21 @@ export default function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const { isEnabled } = draftMode();
 	return (
 		<html lang="en">
 			<body className={`${inter.className} ${fontVariables} `}>
-				<Suspense fallback={<Loading text="Loading..." />}>{children}</Suspense>
+				<Suspense fallback={<Loading text="Loading..." />}>
+					{children}
+					{isEnabled && (
+						<div>
+							Draft mode ({cookies().get('ks-branch')?.value}){' '}
+							<form method="POST" action="/preview/end">
+								<button>End preview</button>
+							</form>
+						</div>
+					)}	
+				</Suspense>
 			</body>
 		</html>
 	);

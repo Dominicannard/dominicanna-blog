@@ -2,11 +2,12 @@ import React from "react";
 import { createReader } from "@keystatic/core/reader";
 import keystaticConfig from "@/keystatic.config";
 import Link from "next/link";
+import { Reader } from "../keystatic/utils";
 
 const reader = createReader(process.cwd(), keystaticConfig);
 
 export default async function SocialLinks() {
-	const socialLinks = await reader.singletons.socialLinks.read();
+	const socialLinks = await Reader().singletons.socialLinks.read();
 	return (
 		<>
 			{socialLinks && (

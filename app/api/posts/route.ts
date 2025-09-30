@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
 	console.log(searchParams);
 
 	try {
-		let posts = await Reader.collections.posts.all();
+		let posts = await Reader().collections.posts.all();
 		posts = sortPostsByPublishDate(posts);
 
 		if (query) {

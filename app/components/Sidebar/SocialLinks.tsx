@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Reader } from "@/app/keystatic/utils";
 
 export default async function SocialLinks() {
-	const socialLinks = await Reader.singletons.socialLinks.read();
+	const socialLinks = await Reader().singletons.socialLinks.read();
 
 	return (
 		<div className="block">

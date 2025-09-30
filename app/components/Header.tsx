@@ -2,11 +2,12 @@ import React from "react";
 import Link from "next/link";
 import { createReader } from "@keystatic/core/reader";
 import keystaticConfig from "@/keystatic.config";
+import { Reader } from "../keystatic/utils";
 
 const reader = createReader(process.cwd(), keystaticConfig);
 
 export default async function Header() {
-	const menuLink = await reader.singletons.menuLinks.read();
+	const menuLink = await Reader().singletons.menuLinks.read();
 
 	return (
 		<header className="header w-full bg-white/70 backdrop-blur-md shadow-sm sticky top-0 z-50">

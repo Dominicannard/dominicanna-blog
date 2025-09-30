@@ -9,31 +9,31 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@keystatic/core": "^0.5.37",
+    "@keystatic/core": "^0.5.48",
     "@keystatic/next": "^3.0.0",
     "@tailwindcss/container-queries": "^0.1.1",
-    "framer-motion": "^11.0.12",
-    "highlight.js": "^11.10.0",
-    "next": "^14.2.15",
+    "framer-motion": "^11.18.2",
+    "highlight.js": "^11.11.1",
+    "next": "^14.2.33",
     "next-transpile-modules": "^10.0.1",
-    "react": "^18",
-    "react-dom": "^18",
-    "react-slick": "^0.30.2",
-    "sharp": "^0.33.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-slick": "^0.30.3",
+    "sharp": "^0.33.5",
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.10",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@tailwindcss/typography": "^0.5.19",
+    "@types/node": "^20.19.18",
+    "@types/react": "^18.3.25",
+    "@types/react-dom": "^18.3.7",
     "@types/react-slick": "^0.23.13",
-    "autoprefixer": "^10.0.1",
-    "eslint": "^8",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^8.57.1",
     "eslint-config-next": "14.1.0",
     "node-polyfill-webpack-plugin": "^3.0.0",
-    "postcss": "^8",
-    "tailwindcss": "^3.3.0",
-    "typescript": "^5"
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.9.2"
   }
 }
