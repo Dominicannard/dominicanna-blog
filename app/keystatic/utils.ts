@@ -13,21 +13,33 @@ export const Reader = cache(() => {
 		isDraftModeEnabled = draftMode().isEnabled;
 	} catch {}
 
-	if (isDraftModeEnabled) {
-		const branch = cookies().get('ks-branch')?.value;
+	const branch = cookies().get('ks-branch')?.value;
 
-		if (branch) {
-			return createGitHubReader(keystaticConfig, {
-				// Replace the below with your repo org an name
-				repo: 'Dominicannard/dominicanna-blog', 
-				ref: branch,
-				// Assuming an existing GitHub app
-				token: cookies().get('keystatic-gh-access-token')?.value,
-			});
-		}
+	if (isDraftModeEnabled && branch) {
+		// Draft mode enabled and branch cookie found: use specific branch from cookie
+		return createGitHubReader(keystaticConfig, {
+			repo: 'Dominicannard/dominicanna-blog',
+			ref: branch,
+			token: cookies().get('keystatic-gh-access-token')?.value,
+		});
+	} else if (!isDraftModeEnabled) {
+		// Not in draft mode (production/published content): use default branch (e.g., 'main')
+		// This ensures content is read from the main branch on Vercel when not in draft mode.
+		return createGitHubReader(keystaticConfig, {
+			repo: 'Dominicannard/dominicanna-blog',
+			ref: 'master', // Assuming 'main' is the production branch
+			token: undefined, // No token needed for reading published content
+		});
+	} else {
+		// Draft mode enabled but no branch cookie found: this is an unexpected state for production.
+		// Log a warning and default to reading from the 'main' branch.
+		console.warn("Draft mode enabled but 'ks-branch' cookie not found. Defaulting to 'main' branch for content reading.");
+		return createGitHubReader(keystaticConfig, {
+			repo: 'Dominicannard/dominicanna-blog',
+			ref: 'master', // Default to 'main' branch
+			token: cookies().get('keystatic-gh-access-token')?.value, // Token might still be useful if draft mode is on
+		});
 	}
-	// If draft mode is off, use the regular reader
-	return createReader(process.cwd(), keystaticConfig);
 });
 
 // export const Reader = createReader(process.cwd(), keystaticConfig);
