@@ -10,14 +10,14 @@ export async function GET(request: NextRequest) {
 	const page = searchParams.get("page") || "1";
 	const limit = searchParams.get("limit");
 
-	console.log("Get Api Posts ");
-	console.log(searchParams);
+	// console.log("Get Api Posts ");
+	// console.log(searchParams);
 
 	try {
 	let posts = await Reader().collections.posts.all();
 	// Ensure posts is always an array, default to empty array if not
-	console.log("Reader Ready: ", await Reader());
-	console.log("Getting Posts: ", posts);
+	// console.log("Reader Ready: ", await Reader());
+	// console.log("Getting Posts: ", posts);
 	if (!Array.isArray(posts)) { 
 		posts = [];
 	}

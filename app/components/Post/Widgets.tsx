@@ -46,7 +46,7 @@ export default function Widget({
       </div>
 
       {/* Footer Link */}
-      <div className="mt-8">
+      <div className="mt-8 mb-8">
         <a 
           href={footerLink}
           className="text-black font-bold text-lg border-b-2 border-black inline-block hover:opacity-70 transition-opacity"

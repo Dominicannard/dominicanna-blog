@@ -53,7 +53,7 @@ export default function FeaturedPost() {
         const dataCate = await resCate.json();
         
         setPosts(dataPost);
-        setCategories(dataCate);
+        setCategories(dataCate); 
       } catch (error) {
         console.error("Error fetching data:", error);
       }

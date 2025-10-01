@@ -55,7 +55,7 @@ export default function Search() {
 				<div className="form-horizontal w-full justify-between flex gap-2 items-center">
 					<input
 						type="text"
-						placeholder="Nhập từ khóa tìm kiếm..."
+						placeholder="Search..."
 						value={searchText}
 						onChange={(event) => setSearchText(event.target.value)}
 						onKeyDown={handleEnterPress}

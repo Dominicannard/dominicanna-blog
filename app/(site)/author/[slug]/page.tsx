@@ -37,7 +37,7 @@ export default async function AuthorPage({ params }: { params: { slug: string } 
 						/>
 					</div>
 					<div className="showcase w-full  flex-col flex flex-1">
-						<h1 className="page-title font-script">Author {author?.name}</h1>
+						<h1 className="page-title">Author {author?.name}</h1>
 
 						{author?.introduce && (
 							<div className="author-introduce">

@@ -6,8 +6,8 @@ import Loading from "@/app/components/Loading";
 
 export const metadata: Metadata = {
 	metadataBase: new URL("https://la-keystatic.vercel.app/"),
-	title: "Paul La's Blog | Keystatic Blog & NextJs 14",
-	description: "Keystatic Blog Content Management",
+	title: "Dominicanna - Dominicanna es la primera revista dominicana dedicada al mundo del cannabis.",
+	description: "Dominicanna es la primera revista dominicana dedicada al mundo del cannabis.",
 };
 
 export default function PostLayout({ children }: { children: React.ReactNode }) {

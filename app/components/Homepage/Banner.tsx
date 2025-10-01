@@ -6,6 +6,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
+import { Loading } from "./FeaturedPost";
 
 // Define a type for the post data we expect to fetch
 interface Post {
@@ -102,8 +103,8 @@ export default function Banner({ props }: { props: readonly (string | null)[] })
 		groupedItems.push(postsData?.slice(i, i + 2));
 	}
 
-	if (loading) {
-			return <div className="w-full h-64 flex items-center justify-center">Loading banner posts...</div>;
+	if (loading) { 
+			return <div className="w-full h-64 flex items-center justify-center"><Loading /></div>;
 	}
 
 	if (error) {

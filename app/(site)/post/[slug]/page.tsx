@@ -105,7 +105,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
 
 						{authors && authors.length > 0 && (
 							<div className="authors border-t mt-10 pt-5">
-								<h3 className="!m-5 font-script text-2xl">Written by</h3>
+								<h3 className="!m-5 text-2xl">Written by</h3>
 								<ul className="author-list list-none flex gap-4">
 									{authors.map((author) => (
 										<li className="author-item" key={author.slug}>

@@ -9,6 +9,7 @@ import Technology from "@/app/components/Homepage/Technology";
 import LatestPost from "../components/Homepage/LatestPost";
 import Widget from "../components/Post/Widgets";
 import CategoryPost from "../components/Homepage/CategoryPost";
+import Ads from "../components/Ads";
 
 export default async function HomePage() {
 	const homePage = await Reader().singletons.homepage.read();
@@ -37,14 +38,17 @@ export default async function HomePage() {
 				{/* Left column */}
 				<div className="col-span-1 md:col-span-1 lg:col-span-3 space-y-8">
 					<LatestPost />
-					<CategoryPost categorySlug="cong-nghe" />
-					<CategoryPost categorySlug="photography" />
+					<CategoryPost categorySlug="cannabis-medicinal" />
+					<CategoryPost categorySlug="salud" />
 				</div>
 
 				{/* Right column - Sticky Widget */}
 				<div className="col-span-1 md:col-span-1 lg:col-span-1">
 					<div className="sticky top-14">
 						<Widget title="Destacados" posts={widgetPosts || []} footerLink="/" />
+						<div className="ads">
+							<Ads />
+						</div>
 					</div>
 				</div>
 			</div>

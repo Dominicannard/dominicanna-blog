@@ -136,7 +136,7 @@ h6 {
 
 .post-detail .type-poetry .post-content p {
 	margin: 0 auto 10px auto;
-	@apply font-script text-2xl @lg:text-3xl @2xl:text-4xl;
+	@apply text-2xl @lg:text-3xl @2xl:text-4xl;
 }
 
 .post-detail .type-poetry p:nth-child(4n + 1) {

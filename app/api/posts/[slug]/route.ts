@@ -7,11 +7,11 @@ export async function GET(request: NextRequest, context: any) {
 
 	const slug = params.slug;
 
-	console.log("Get API Post " + slug);
+	// console.log("Get API Post " + slug);
 
 	try {
 		const post = await Reader().collections.posts.read(slug);
-		console.log('post reader: ', post);
+		// console.log('post reader: ', post);
 
 		if (!post) {
 			return NextResponse.json({ error: true }, { status: 404, statusText: "Not found" });

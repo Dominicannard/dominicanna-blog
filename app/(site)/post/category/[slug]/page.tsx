@@ -21,8 +21,8 @@ export default async function CategoryPage({ params }: { params: { slug: string 
 				<span>Category {category?.category}</span>
 			</h1>
 			<div className="post-category">
-				<pre className="font-script text-2xl text-center whitespace-pre-wrap">
-					{category?.description || "Những bài viết hay vê " + category?.category}
+				<pre className="text-2xl text-center whitespace-pre-wrap">
+					{category?.description || "Grandes publicaciones sobre " + category?.category}
 				</pre>
 			</div>
 			<div className="post-container mt-8">

@@ -92,7 +92,7 @@ export default function SearchPage() {
 					<div className="form-horizontal w-full m-auto max-w-xl justify-between flex gap-3 items-center">
 						<input
 							type="text"
-							placeholder="Nhập từ khóa tìm kiếm..."
+							placeholder="Search..."
 							value={query}
 							onChange={(event) => setQuery(event.target.value)}
 							onKeyDown={handleEnterPress}

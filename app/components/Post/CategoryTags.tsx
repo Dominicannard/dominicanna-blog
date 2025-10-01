@@ -23,11 +23,11 @@ export const CategoryTag = ({ category }: { category: ICategory | null }) => {
 			bgColor = "bg-lime-700 hover:bg-lime-600";
 			break;
 
-		case "web-developer":
+		case "cannabis-medicinal":
 			bgColor = "bg-amber-700 hover:bg-amber-600";
 			break;
 
-		case "photography":
+		case "salud":
 			bgColor = "bg-pink-700 hover:bg-pink-600";
 			break;
 	}

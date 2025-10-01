@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from 'next/image';
 import { Reader } from "../keystatic/utils";
 import MobileNav from "./MobileNav";
 
@@ -10,14 +11,16 @@ interface MenuItem {
 
 export default async function Header() {
 	const menuLink = await Reader().singletons.menuLinks.read();
-	const menuItems: MenuItem[] = menuLink?.items || [];
+	const menuItems: readonly MenuItem[] = menuLink?.items || [];
 
 	return (
 		<header className="header w-full bg-white border-b border-gray-200 sticky top-0 z-50">
 			<div className="container m-auto px-4 h-14 flex justify-between items-center">
 				<div className="logo flex items-center">
 					<Link className="flex items-center" href="/">
-						<span className="text-2xl font-bold text-black">W.</span>
+						<span className="text-2xl font-bold text-black">
+							<Image src="/dom-logo.png" alt="" width={50} height={100} style={{ position: 'relative', left: '-12px' }} />
+						</span> 
 					</Link>
 				</div>
 				<nav className="hidden md:flex flex-1 justify-center">
@@ -48,7 +51,7 @@ export default async function Header() {
 						</svg>
 					</button>
 					<div className="md:hidden">
-						<MobileNav menuItems={menuItems} />
+						<MobileNav menuItems={[...menuItems]} />
 					</div>
 				</div>
 			</div>
