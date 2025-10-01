@@ -16,6 +16,8 @@ export async function GET(request: NextRequest) {
 	try {
 	let posts = await Reader().collections.posts.all();
 	// Ensure posts is always an array, default to empty array if not
+	console.log("Reader Ready: ", await Reader());
+	console.log("Getting Posts: ", posts);
 	if (!Array.isArray(posts)) {
 		posts = [];
 	}
