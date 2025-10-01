@@ -1,41 +1,40 @@
 ---
-title: 'Creación de Nuevas Publicaciones sobre Cannabis'
+title: Creating a new post
 draft: false
 publishDate: '2024-02-20'
 categories:
-  - noticias-cannabis
-  - guias-cannabis
+  - web-developer
+  - news
 authors:
   - paul-la
   - david
 ---
-## [**Creación de Nuevas Publicaciones sobre Cannabis**](https://keystatic.com/docs/installation-next-js#creating-a-new-post)
+## [**Creating a new post**](https://keystatic.com/docs/installation-next-js#creating-a-new-post)
 
-En nuestro archivo de configuración de Keystatic, hemos establecido la propiedad `path` para nuestra colección `posts` como `src/content/posts/*`. Esto significa que cualquier nueva publicación creada a través de la Interfaz de Administración de Keystatic se guardará automáticamente en esta ubicación.
+In our Keystatic config file, we've set the&nbsp;`path`&nbsp;property for our&nbsp;`posts`&nbsp;collection to&nbsp;`src/content/posts/*`.
 
-Para la industria del cannabis, esto permite una gestión eficiente de contenido. Ya sea que se trate de noticias sobre avances en investigación, actualizaciones regulatorias o información sobre nuevos productos, el proceso simplificado asegura que la información relevante se publique rápidamente.
+As a result, creating a new post from the Keystatic Admin UI should create a new&nbsp;`content`&nbsp;directory in the&nbsp;`src`&nbsp;directory, with the new post&nbsp;`.mdoc`&nbsp;file inside!
 
-Al crear una nueva publicación sobre cannabis desde la UI de Keystatic, se generará un nuevo directorio `content` dentro de `src`, y el archivo `.mdoc` de la publicación se colocará dentro de `src/content/posts/`.
+Go ahead — create a new post from the Admin UI, and hit save.
 
-Por ejemplo, si creas una nueva entrada sobre los beneficios medicinales del CBD, el archivo podría llamarse `beneficios-medicinales-cbd.mdoc`.
+You will find your new post inside the&nbsp;`src/content/posts`&nbsp;directory:
 
-El contenido dentro de este archivo podría verse así:
-
-```mdoc
----
-title: Beneficios Medicinales del CBD
----
-
-El CBD (cannabidiol) ha ganado reconocimiento por sus potenciales propiedades terapéuticas, ofreciendo alivio para diversas condiciones sin los efectos psicoactivos del THC.
+```
+src
+└── content
+    └── posts
+        └── my-first-post.mdoc
 ```
 
-**Proceso Simplificado para Contenido de Cannabis:**
+Navigate to that file in your code editor and verify that you can see the Markdown content you entered. For example:
 
-1.  **Crear Nueva Publicación:** Utiliza la interfaz de Keystatic para iniciar una nueva entrada.
-2.  **Escribir Contenido:** Redacta tu artículo sobre temas de cannabis, como cultivo, legalidad, productos, o beneficios para la salud.
-3.  **Guardar:** Al guardar, Keystatic se encarga de la organización del archivo.
+```
+---
+title: My First Post
+---
 
-Este flujo de trabajo asegura que la información sobre el cannabis se pueda compartir de manera oportuna y organizada, manteniendo a los usuarios informados sobre los desarrollos más recientes en esta industria en constante evolución.
+This is my very first post. I am **super** excited.
+```
 
 Video Demo
 
