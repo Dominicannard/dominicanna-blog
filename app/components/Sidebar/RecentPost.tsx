@@ -5,7 +5,7 @@ import React from "react";
 
 export default async function RecentPost({ postNumber }: { postNumber: number }) {
 	const allPosts = await Reader().collections.posts.all();
-	const recentPost = sortPostsByPublishDate(allPosts).slice(0, postNumber);
+	const recentPost = sortPostsByPublishDate(allPosts)?.slice(0, postNumber);
 
 	return (
 		<div className="block">

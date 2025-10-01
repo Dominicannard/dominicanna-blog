@@ -17,7 +17,7 @@ export default async function HomePage() {
 	let posts = await Reader().collections.posts.all();
 	posts = posts.filter((post) => !post.entry.draft);
 	posts = sortPostsByPublishDate(posts);
-	const latestPost = posts.slice(0, lastNumber);
+	const latestPost = posts?.slice(0, lastNumber);
 	const categories = await Reader().collections.categories.all();
 
 	const widgetPosts = latestPost.map((post) => ({

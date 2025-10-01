@@ -81,7 +81,7 @@ export const Reader = cache(() => {
 // export const Reader = createReader(process.cwd(), keystaticConfig); // This line is commented out and should not be used in production.
 
 export const sortPostsByPublishDate = <T extends IPost | IPostResolved>(posts: T[]): T[] => {
-	return posts.slice().sort((postA: T, postB: T) => {
+	return posts.slice()?.sort((postA: T, postB: T) => {
 		// Handle cases where publishDate is missing
 		if (!postA.entry.publishDate) {
 			return 1; // Move posts without publishDate to the end

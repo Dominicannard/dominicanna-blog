@@ -46,7 +46,7 @@ export default function FeaturedPost() {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const apiUrl = "/"; 
+        const apiUrl = "/";  
         const resPost = await fetch(`${apiUrl}api/posts/featured`);
         const resCate = await fetch(`${apiUrl}api/posts/category`);
         const dataPost = await resPost.json();
@@ -67,7 +67,7 @@ export default function FeaturedPost() {
     : posts.filter(post => post.entry.categories?.includes(activeTab));
 
   // Get exactly 6 posts
-  const displayPosts = filteredPosts.slice(0, 6);
+  const displayPosts = filteredPosts?.slice(0, 6);
   
   return (
     <>

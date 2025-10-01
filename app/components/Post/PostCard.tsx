@@ -80,9 +80,9 @@ export default function PostCard({
 					{/* Excerpt/Description */}
 					{post.entry.summary && (
 						<p className="text-gray-700 text-sm line-clamp-2 leading-relaxed flex-1">
-							{post.entry.summary?.length > 100
-						? post.entry.summary.slice(0, 99) + "..."
-						: post.entry.summary}
+							{post?.entry?.summary?.length > 100
+						? post?.entry?.summary?.slice(0, 99) + "..."
+						: post?.entry?.summary}
 						</p>
 					)}
 				</div>

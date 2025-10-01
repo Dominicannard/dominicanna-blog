@@ -21,7 +21,7 @@ export default function PostGridClient({
   const [limit, setLimit] = useState(viewMoreLimit);
 
   // Determine the posts to display based on the limit
-  const postsToShow = viewMoreButton ? posts.slice(0, limit) : posts;
+  const postsToShow = viewMoreButton ? posts?.slice(0, limit) : posts;
 
   // Check if there are posts left to show
   const hasMorePosts = viewMoreButton && posts.length > limit;

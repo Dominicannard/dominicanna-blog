@@ -33,7 +33,7 @@ export async function GET(request: NextRequest) {
 			const size = Number.parseInt(limit);
 			const from = Math.max(Number.parseInt(page) - 1, 0) * size;
 			const to = Number.parseInt(page) * size;
-			posts = posts.slice(from, to);
+			posts = posts?.slice(from, to);
 		}
 
 		const data = posts.map((post, index) => {

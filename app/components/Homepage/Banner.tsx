@@ -61,8 +61,8 @@ export default function Banner({ props }: { props: readonly (string | null)[] })
                 // Use Promise.all to fetch all posts concurrently
                 const promises = validSlugs.map(async (slug) => {
                     try {
-                        const response = await fetch(`/api/posts/${slug}`);
-                        if (!response.ok) {
+                        const response = await fetch(`/api/posts/${slug}`); 
+                        if (!response.ok) { 
                             // Log the status and text for debugging
                             const errorText = await response.text();
                             console.error(`Failed to fetch post for slug: ${slug}, Status: ${response.status}, Body: ${errorText}`);
@@ -98,7 +98,7 @@ export default function Banner({ props }: { props: readonly (string | null)[] })
 	// Group items into pairs for each slide
 	const groupedItems = [];
 	for (let i = 0; i < postsData?.length; i += 2) { // Use postsData state here
-		groupedItems.push(postsData.slice(i, i + 2));
+		groupedItems.push(postsData?.slice(i, i + 2));
 	}
 
 	if (loading) {
@@ -152,7 +152,7 @@ export default function Banner({ props }: { props: readonly (string | null)[] })
 
 													<p className="text-base md:text-lg text-gray-600 mb-4 leading-relaxed">
 														{item?.summary?.length > 100
-															? item.summary.slice(0, 99) + "..."
+															? item?.summary?.slice(0, 99) + "..."
 															: item?.summary}
 													</p>
 
