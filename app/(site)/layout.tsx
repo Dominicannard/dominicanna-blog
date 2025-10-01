@@ -5,7 +5,7 @@ import Footer from "@/app/components/Footer";
 import Loading from "@/app/components/Loading";
 
 export const metadata: Metadata = {
-	metadataBase: new URL("https://la-keystatic.vercel.app/"),
+	metadataBase: new URL("https://dominicanna-blog-bice.vercel.app"),
 	title: "Dominicanna - Dominicanna es la primera revista dominicana dedicada al mundo del cannabis.",
 	description: "Dominicanna es la primera revista dominicana dedicada al mundo del cannabis.",
 };
