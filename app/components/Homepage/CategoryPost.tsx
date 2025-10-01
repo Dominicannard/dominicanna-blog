@@ -21,7 +21,12 @@ export default function CategoryPost({ categorySlug }: { categorySlug: string })
 				
 				// Fetch categories
 				const categoriesRes = await fetch('/api/posts/category');
-				const categoriesData = await categoriesRes.json();
+				let categoriesData = await categoriesRes.json();
+
+				// Ensure categoriesData is always an array, default to empty array if not
+				if (!Array.isArray(categoriesData)) {
+					categoriesData = [];
+				}
 				
 				// Filter posts by category slug (posts can have multiple categories)
 				const filteredPosts = postsData.filter((post: IPost) => 
