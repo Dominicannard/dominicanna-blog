@@ -28,6 +28,14 @@ export const Reader = cache(() => {
     isDraftModeEnabled = draftMode().isEnabled;
   } catch {}
 
+	if (isStaticGeneration()) {
+		return createGitHubReader(keystaticConfig, {
+			repo: 'Dominicannard/dominicanna-blog',
+			ref: 'master',
+			token: undefined, // No token needed for reading published content from the main branch.
+		});
+	}
+
   if (isDraftModeEnabled) {
     const branch = cookies().get('ks-branch')?.value;
 
