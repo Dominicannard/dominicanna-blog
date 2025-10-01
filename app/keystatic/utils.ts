@@ -27,14 +27,12 @@ export const Reader = cache(() => {
     }
   }
 
-	/*
 	if (process.env.NODE_ENV === 'production'){
 		return createGitHubReader(keystaticConfig, {
 			repo: 'Dominicannard/dominicanna-blog',
 			token: process.env.NEXT_PUBLIC_GITHUB_PAT,
 		});
 	}
-		*/
   // If draft mode is off, use the regular reader
   return createReader(process.cwd(), keystaticConfig);
 });
