@@ -118,7 +118,7 @@ export default function Banner({ props }: { props: readonly (string | null)[] })
 
 	return (
 		<div className="w-full bg-white border-t-4 border-red-600">
-			<div className="w-full max-w-full">
+			<div className="w-full max-w-full"  style={{ marginBottom: -5 }}>
 				<Slider {...settings}>
 					{groupedItems?.map((group: Post[], slideIndex: number) => ( // Use Post type for group
 						<div key={slideIndex}>
@@ -146,25 +146,27 @@ export default function Banner({ props }: { props: readonly (string | null)[] })
 											</div>
 
 											{/* Content Section */}
-											<div className="w-full md:w-1/2 flex flex-col justify-between py-2">
+											<div className="w-full md:w-1/2 flex flex-col justify-between py-2 pl-4 pr-4">
 												<div>
 
 													<Link 
 														href={`/post/${item.slug}` || "/"}
 													>
-														<h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 leading-tight">
-															{item?.title} {/* Use fetched data */}
+														<h2 className="text-xl md:text-xl font-bold text-gray-900 mb-4 leading-tight">
+															{item?.title?.length > 50
+															? item?.title?.slice(0, 49) + "..."
+															: item?.title}
 														</h2>
 													</Link>
 
-													<p className="text-base md:text-lg text-gray-600 mb-4 leading-relaxed">
-														{item?.summary?.length > 100
-															? item?.summary?.slice(0, 99) + "..."
+													<p className="text-base md:text-md text-gray-600 mb-4 leading-relaxed">
+														{item?.summary?.length > 75
+															? item?.summary?.slice(0, 74) + "..."
 															: item?.summary}
 													</p>
 
 													{item?.authors && item.authors.length > 0 && ( // Check for authors array and if it's not empty
-														<p className="text-sm text-red-500 mb-6">
+														<p className="text-sm text-red-500 mb-3">
 															Por {item.authors.length === 1 ? item.authors[0] : `${item.authors[0]} y otros`}
 														</p>
 													)}
