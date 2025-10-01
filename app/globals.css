@@ -157,3 +157,63 @@ h6 {
 .prose .hljs {
 	background-color: inherit;
 }
+
+/* Responsive images and figures within prose content */
+.prose img {
+  /* Default to full width on mobile */
+  width: 90%;
+  height: auto;
+}
+
+/* Tablet and larger */
+@media (min-width: 768px) { /* md breakpoint */
+  .prose figure {
+    width: 40%; /* 40% width on tablets */
+    max-width: 40%; /* Ensure it doesn't exceed 40% */
+  }
+}
+
+/* Desktop and larger */
+@media (min-width: 1024px) { /* lg breakpoint */
+  .prose figure {
+    width: 30%; /* 30% width on desktops */
+    max-width: 30%; /* Ensure it doesn't exceed 30% */
+  }
+}
+
+/* Ensure figures don't impose a fixed max-height that causes overflow */
+.prose figure {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	max-height: none !important; /* Override any fixed max-height */
+  margin: 1rem 0; /* Reset margin to avoid centering issues */
+  float: left; /* Apply float to figure as well if it contains the image */
+}
+
+/* Clear float for elements following images to prevent layout issues */
+/* Using a clearfix on the container of the floated element is more robust */
+.prose .post-content::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Specific styles to ensure text wraps around floated images/figures */
+.prose p {
+  /* Ensure paragraphs don't collapse the height and allow wrapping */
+  overflow-wrap: break-word; /* For older browsers */
+  word-wrap: break-word; /* Standard */
+  hyphens: auto; /* Optional: for better hyphenation */
+}
+
+/* If the figure has Tailwind's m-auto, it will center it. We need to override this. */
+.prose figure.m-auto {
+  float: left; /* Ensure float is applied */
+}
+
+/* If the figure has Tailwind's max-h-[800px], we need to override it. */
+/* This is now handled by the general .prose figure rule */
+/* .prose figure[class*="max-h-"] { */
+/*   max-height: none !important; */
+/* } */
