@@ -19,39 +19,26 @@ export default async function SocialLinks() {
 			{socialLinks && (
 				<div className=""> {/* Mimic Categories.tsx content area container */}
 					{socialLinks.twitter && (
-						<div className="flex items-center justify-between py-1"> {/* Matching item structure from Categories.tsx */}
+						<div className="flex items-center justify-between py-1">
 							<Link
 								href={`https://twitter.com/${socialLinks.twitter}`}
 								target="_blank"
 								rel="noopener noreferrer"
-								className="text-sm font-bold hover:opacity-70 transition-opacity" // Matching Link classes from Categories.tsx
+								className="text-sm font-bold hover:opacity-70 transition-opacity"
 							>
 								Twitter
 							</Link>
-							{/* No count equivalent for social links */}
 						</div>
 					)}
-					{socialLinks.github && (
+					{socialLinks.instagram && (
 						<div className="flex items-center justify-between py-1">
 							<Link
-								href={`https://github.com/${socialLinks.github}`}
+								href={`https://instagram.com/${socialLinks.instagram}`}
 								target="_blank"
 								rel="noopener noreferrer"
 								className="text-sm font-bold hover:opacity-70 transition-opacity"
 							>
-								Github
-							</Link>
-						</div>
-					)}
-					{socialLinks.linkedin && (
-						<div className="flex items-center justify-between py-1">
-							<Link
-								href={`https://linkedin.com/in/${socialLinks.linkedin}`}
-								target="_blank"
-								rel="noopener noreferrer"
-								className="text-sm font-bold hover:opacity-70 transition-opacity"
-							>
-								LinkedIn
+								Instagram
 							</Link>
 						</div>
 					)}
@@ -63,7 +50,19 @@ export default async function SocialLinks() {
 								rel="noopener noreferrer"
 								className="text-sm font-bold hover:opacity-70 transition-opacity"
 							>
-								Facebook {/* Corrected typo */}
+								Facebook
+							</Link>
+						</div>
+					)}
+					{socialLinks.mail && (
+						<div className="flex items-center justify-between py-1">
+							<Link
+								href={`mailto:${socialLinks.mail}`}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="text-sm font-bold hover:opacity-70 transition-opacity"
+							>
+								Mail
 							</Link>
 						</div>
 					)}

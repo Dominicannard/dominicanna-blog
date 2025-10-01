@@ -65,3 +65,10 @@ export interface IAuthor {
 		  }[]
 		| undefined;
 }
+
+export interface ISocialLinks {
+	instagram: string;
+	twitter: string;
+	facebook: string;
+	mail: string;
+}

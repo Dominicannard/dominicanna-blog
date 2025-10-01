@@ -66,7 +66,7 @@ function PostArticle({ slug }: { slug: string }) {
 					)}
 					{post?.postAuthors && post.postAuthors.length > 0 && (
 						<div className="authors">
-							<h4>Escrito por</h4>
+							<h4>Acerca del autor</h4>
 							<ul className="author-list list-none flex gap-4">
 								{post.postAuthors.map((author) => (
 									<li className="author-item" key={author.slug}>

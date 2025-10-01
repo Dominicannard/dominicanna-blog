@@ -143,7 +143,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
 
 						{authors && authors.length > 0 && (
 							<div className="authors border-t mt-10 pt-5">
-								<h4 className="!m-5 text-xl">Escrito por</h4>
+								<h4 className="!m-5 text-xl">Acerca del autor</h4>
 								<ul className="author-list list-none flex gap-4">
 									{authors.map((author: any) => ( // Cast to any to satisfy the implicit any error, or define a proper type if available
 										<li className="author-item" key={author.slug}>

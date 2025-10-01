@@ -10,6 +10,7 @@ import LatestPost from "../components/Homepage/LatestPost";
 import Widget from "../components/Post/Widgets";
 import CategoryPost from "../components/Homepage/CategoryPost";
 import Ads from "../components/Ads";
+import BannerAd from "@/app/components/Homepage/BannerAd";
 
 export default async function HomePage() {
 	const homePage = await Reader().singletons.homepage.read();
@@ -34,6 +35,7 @@ export default async function HomePage() {
 				</section>
 			)}
 			<FeaturedPost />
+			<BannerAd />
 			<div className="p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 				{/* Left column */}
 				<div className="col-span-1 md:col-span-1 lg:col-span-3 space-y-8">

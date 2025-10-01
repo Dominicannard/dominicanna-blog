@@ -1,4 +1,4 @@
-import { config, fields, collection, component, singleton, LocalConfig, GithubConfig } from "@keystatic/core";
+import { config, fields, collection, component, singleton, LocalConfig, GitHubConfig } from "@keystatic/core";
 import ShowcaseYoutube from "./app/components/Post/ShowcaseYoutube";
 
 const isDev = process.env.NODE_ENV === "development";
@@ -9,7 +9,7 @@ const localMode: LocalConfig["storage"] = {
 	kind: "local",
 };
 
-const githubMode: GithubConfig["storage"] = {
+const githubMode: GitHubConfig["storage"] = {
 	kind: 'github',
 	repo: {
 		owner: "Dominicannard", 
@@ -255,10 +255,10 @@ export default config({
 			label: "Social Links",
 			path: "app/content/social-links",
 			schema: {
-				twitter: fields.url({ label: "Twitter", description: "The twitter handles" }),
-				github: fields.url({ label: "Github", description: "The github username" }),
-				linkedin: fields.url({ label: "LinkedIn", description: "The LinkedIn ID" }),
+				instagram: fields.url({ label: "Instagram", description: "The Instagram handle" }),
+				twitter: fields.url({ label: "Twitter", description: "The Twitter handle" }),
 				facebook: fields.url({ label: "Facebook", description: "The Facebook Link" }),
+				mail: fields.url({ label: "Mail", description: "The Mail address" }),
 			},
 		}),
 		menuLinks: singleton({

@@ -1,11 +1,12 @@
 import React from "react";
-import { Instagram, Twitter, Facebook, Youtube, Linkedin, Newspaper, Mail } from "lucide-react";
-import Categories from "./Sidebar/Categories";
-import { Reader } from "../keystatic/utils";
 import Link from "next/link";
+import { Instagram, Twitter, Facebook, Mail } from "lucide-react";
+import { Reader } from "../keystatic/utils";
 
 export default async function Footer() {
 	const menuLinks = await Reader().singletons.menuLinks.read();
+	const categories = await Reader().collections.categories.all();
+	const socialLinks = await Reader().singletons.socialLinks.read();
 
 	return (
 		<footer className="bg-black text-white">
@@ -13,32 +14,55 @@ export default async function Footer() {
 				{/* Social Icons - Top Right */}
 				<div className="flex justify-end mb-8">
 					<div className="flex gap-4 text-white">
-						<a href="#" className="hover:opacity-70 transition-opacity" aria-label="Instagram">
-							<Instagram size={18} />
-						</a>
-						<a href="#" className="hover:opacity-70 transition-opacity" aria-label="Twitter">
-							<Twitter size={18} />
-						</a>
-						<a href="#" className="hover:opacity-70 transition-opacity" aria-label="Facebook">
-							<Facebook size={18} />
-						</a>
-						<a href="#" className="hover:opacity-70 transition-opacity" aria-label="YouTube">
-							<Youtube size={18} />
-						</a>
-						<a href="#" className="hover:opacity-70 transition-opacity" aria-label="LinkedIn">
-							<Linkedin size={18} />
-						</a>
-						<a href="#" className="hover:opacity-70 transition-opacity" aria-label="News">
-							<Newspaper size={18} />
-						</a>
-						<a href="#" className="hover:opacity-70 transition-opacity" aria-label="Email">
-							<Mail size={18} />
-						</a>
+						{socialLinks && socialLinks.instagram && (
+							<Link
+								href={`https://instagram.com/${socialLinks.instagram}`}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="hover:opacity-70 transition-opacity"
+								aria-label="Instagram"
+							>
+								<Instagram size={18} />
+							</Link>
+						)}
+						{socialLinks && socialLinks.twitter && (
+							<Link
+								href={`https://twitter.com/${socialLinks.twitter}`}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="hover:opacity-70 transition-opacity"
+								aria-label="Twitter"
+							>
+								<Twitter size={18} />
+							</Link>
+						)}
+						{socialLinks && socialLinks.facebook && (
+							<Link
+								href={`https://facebook.com/${socialLinks.facebook}`}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="hover:opacity-70 transition-opacity"
+								aria-label="Facebook"
+							>
+								<Facebook size={18} />
+							</Link>
+						)}
+						{socialLinks && socialLinks.mail && (
+							<Link
+								href={`mailto:${socialLinks.mail}`}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="hover:opacity-70 transition-opacity"
+								aria-label="Email"
+							>
+								<Mail size={18} />
+							</Link>
+						)}
 					</div>
 				</div>
 
 				{/* Footer Columns */}
-				<div className="grid grid-cols-3 gap-12 mb-8">
+				<div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-8">
 					{/* Column 1 - Menu Links */}
 					<div className="text-sm [&_h3]:hidden [&_ul]:space-y-2 [&_a]:text-white [&_a:hover]:opacity-70">
 						{menuLinks && menuLinks.items.length > 0 && (
@@ -57,14 +81,43 @@ export default async function Footer() {
 						)}
 					</div>
 
-					{/* Column 2 - Categories */}
+					{/* Column 1 - Menu Links */}
 					<div className="text-sm [&_h3]:hidden [&_ul]:space-y-2 [&_a]:text-white [&_a:hover]:opacity-70">
-						<Categories />
+						{categories && categories.length > 0 && (
+							<div className="block-content space-y-2 text-sm">
+								{categories.slice(0, 6).map((item, index) => (
+									<div key={index} className={`category py-2 ${index > 0 ? "" : ""}`}>
+										<Link
+											className="alink"
+											href={`/post/category/${item.slug}`}
+										>
+											{item?.entry?.category}
+										</Link>
+									</div>
+								))}
+							</div>
+						)}
 					</div>
 
-					{/* Column 3 - Additional Links (if any) */}
-					<div>
-						{/* This column can be populated with additional links */}
+					{/* Column 3 - Additional Links */}
+					<div className="text-sm [&_h3]:hidden [&_ul]:space-y-2 [&_a]:text-white [&_a:hover]:opacity-70">
+						<div className="block-content space-y-2 text-sm">
+							<div className="category py-2">
+								<Link className="alink" href="/anuncios">Anuncia en Dominicanna</Link>
+							</div>
+							<div className="category py-2">
+								<Link className="alink" href="/sobre-nosotros">Sobre Dominicanna</Link>
+							</div>
+							<div className="category py-2">
+								<Link className="alink" href="/mapa-del-sitio">Mapa del Sitio</Link>
+							</div>
+							<div className="category py-2">
+								<Link className="alink" href="/politicas-privacidad">Políticas de Privacidad</Link>
+							</div>
+							<div className="category py-2">
+								<Link className="alink" href="/politicas-cookies">Política de Cookies</Link>
+							</div>
+						</div>
 					</div>
 				</div>
 
