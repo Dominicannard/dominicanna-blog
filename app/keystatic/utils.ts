@@ -33,8 +33,16 @@ export const Reader = cache(() => {
 		});
 	}
 
-	// --- Runtime Context ---
-	// If not in static generation, we are in a runtime context (API route, server component at runtime).
+	// --- Development Environment ---
+	const isDev = process.env.NODE_ENV === "development";
+	if (isDev) {
+		// Use the local reader for development.
+		// No need to access GitHub or draft mode features.
+		return createReader(process.cwd(), keystaticConfig);
+	}
+
+	// --- Runtime Context in Production ---
+	// If not in static generation and not in development, we are in a runtime context (API route, server component at runtime).
 	// Here, we can safely use draftMode() and cookies().
 	let isDraftModeEnabled = false;
 	let branch: string | undefined = undefined;
@@ -43,8 +51,8 @@ export const Reader = cache(() => {
 		isDraftModeEnabled = draftMode().isEnabled;
 		branch = cookies().get('ks-branch')?.value;
 	} catch (e) {
-		// This catch is a safeguard for unexpected runtime issues, though isStaticGeneration() should prevent SSG issues.
-		console.warn("Unexpected error accessing draftMode or cookies in runtime context. Assuming not in draft mode.", e);
+		// This catch is a safeguard for unexpected runtime issues.
+		console.warn("Unexpected error accessing draftMode or cookies in production runtime context. Assuming not in draft mode.", e);
 		isDraftModeEnabled = false; // Default to not in draft mode if error occurs.
 	}
 
