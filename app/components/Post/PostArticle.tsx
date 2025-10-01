@@ -13,7 +13,8 @@ function PostArticle({ slug }: { slug: string }) {
 	const [post, setPost] = useState<IPostArticle>();
 
 	const fetchData = async () => {
-		const response = await fetch(`http://localhost:3000/api/posts/${slug}`, {
+		const apiUrl = "/"; 
+		const response = await fetch(`${apiUrl}api/posts/${slug}`, {
 			next: {
 				revalidate: 7200,
 			},

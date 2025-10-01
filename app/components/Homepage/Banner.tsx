@@ -62,7 +62,7 @@ export default function Banner({ props }: { props: readonly (string | null)[] })
                 const promises = validSlugs.map(async (slug) => {
                     try {
 												const apiUrl = "/";  
-                        const response = await fetch(`${apiUrl}/api/posts/${slug}`); 
+                        const response = await fetch(`${apiUrl}api/posts/${slug}`); 
                         if (!response.ok) { 
                             // Log the status and text for debugging
                             const errorText = await response.text();
