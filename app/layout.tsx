@@ -6,7 +6,6 @@ import Loading from "./components/Loading";
 import { cookies, draftMode } from 'next/headers';
 import DraftModeIndicator from './components/DraftModeIndicator';
 import { PostHogProvider } from './providers'
-import Script from 'next/script';
 
 const inter = Inter({ subsets: ["latin"], variable: "--inter" });
 
@@ -56,19 +55,11 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<head>
-				{process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT_ID && (() => {
-					try {
-						return (
-						<Script
-							strategy="afterInteractive"
-							src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT_ID}`}
-						/>
-						);
-					} catch (error) {
-						console.error("Error rendering Google AdSense script:", error);
-						return null; // Render nothing if there's an error
-					}
-				})()}
+				<script
+					async
+					src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT_ID}`}
+					crossOrigin="anonymous"
+				></script>
 			</head>
 			<body className={`${inter.className} ${fontVariables} `}>
 					<Suspense fallback={<Loading text="Loading..." />}>

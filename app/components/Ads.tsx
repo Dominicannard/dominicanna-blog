@@ -1,9 +1,13 @@
 import React from 'react';
 import Image from 'next/image';
+import AdComponent from './AdComponent';
 
 const Ads: React.FC = () => {
   return (
     <div className="ads-container">
+      <span>
+        <AdComponent adSlot="7208043460" />
+      </span>
       <a href={`mailto:hello.dominicanna@hotmail.com`} target="_blank" rel="noopener noreferrer">
         <Image
           src="/images/ads/widget_ads.png"
