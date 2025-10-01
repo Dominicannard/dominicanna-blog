@@ -64,10 +64,10 @@ export default async function PostPage({ params }: { params: { slug: string } })
 	const postContent = await post?.content();
 
 	return (
-		<div className="post-detail w-full my-10 m-auto flex flex-col gap-10  @container">
+		<div className="post-detail w-full my-10 mt-5 m-auto flex flex-col gap-10  @container">
 			<Suspense fallback={<Loading text="Loading Post" />}>
 				<article
-					className={`post-article bg-white @xl:border @xl:rounded-2xl @xl:shadow-sm overflow-hidden type-${post?.postType} `}
+					className={`post-article bg-white border-b border-gray-700 overflow-hidden type-${post?.postType} `}
 				>
 					{post?.heroImage && (
 						<div className="post-image">

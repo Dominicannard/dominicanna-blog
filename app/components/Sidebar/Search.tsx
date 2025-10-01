@@ -51,7 +51,7 @@ export default function Search() {
 	return (
 		<div className="w-full max-w-2xl font-sans"> {/* Main container */}
 			{/* Header */}
-			<div className="mb-2 mt-4 flex items-start"> {/* Header container */}
+			<div className="mb-2 flex items-start"> {/* Header container */}
 				<div className="w-1 bg-black mr-6 self-stretch min-h-[50px]"></div> {/* Vertical bar */}
 				<div className="bg-black px-6 py-2"> {/* Title box */}
 					<h2 className="text-white text-md font-bold tracking-wide">Search</h2> {/* Title text */}
