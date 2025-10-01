@@ -1,7 +1,9 @@
 import { config, fields, collection, component, singleton, LocalConfig, GithubConfig } from "@keystatic/core";
 import ShowcaseYoutube from "./app/components/Post/ShowcaseYoutube";
 
-const isPro = process.env.NODE_ENV === "production";
+const isDev = process.env.NODE_ENV === "development";
+
+console.log(process.env.NODE_ENV);
 
 const localMode: LocalConfig["storage"] = {
 	kind: "local",
@@ -16,7 +18,7 @@ const githubMode: GithubConfig["storage"] = {
 };
 
 export default config({
-	storage: isPro ? githubMode : localMode,
+	storage: isDev ? localMode : githubMode,
 
 	ui: {
 		brand: { name: "La Keystatic" },
