@@ -22,6 +22,14 @@ const isStaticGeneration = () => {
 };
 
 export const Reader = cache(() => {
+	// --- Development Environment ---
+	const isDev = process.env.NODE_ENV === "development";
+	if (isDev) {
+		// Use the local reader for development.
+		// No need to access GitHub or draft mode features.
+		return createReader(process.cwd(), keystaticConfig);
+	}
+
 	// --- Static Generation Context ---
 	// If in static generation context, always use GitHub reader with the production branch.
 	// This avoids calling draftMode() or cookies() which are not available during SSG.
@@ -33,13 +41,7 @@ export const Reader = cache(() => {
 		});
 	}
 
-	// --- Development Environment ---
-	const isDev = process.env.NODE_ENV === "development";
-	if (isDev) {
-		// Use the local reader for development.
-		// No need to access GitHub or draft mode features.
-		return createReader(process.cwd(), keystaticConfig);
-	}
+	
 
 	// --- Runtime Context in Production ---
 	// If not in static generation and not in development, we are in a runtime context (API route, server component at runtime).

@@ -35,7 +35,7 @@ export default function Widget({
             </div>
             <div className="flex-1 pt-2">
               <a 
-                href={`/posts/${post.slug}`}
+                href={`/post/${post.slug}`}
                 className="text-sm font-bold text-black leading-tight hover:opacity-70 transition-opacity block"
               >
                 {post.title}
