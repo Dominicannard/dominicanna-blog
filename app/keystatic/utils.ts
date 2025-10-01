@@ -41,8 +41,6 @@ export const Reader = cache(() => {
 		});
 	}
 
-	
-
 	// --- Runtime Context in Production ---
 	// If not in static generation and not in development, we are in a runtime context (API route, server component at runtime).
 	// Here, we can safely use draftMode() and cookies().
@@ -66,15 +64,7 @@ export const Reader = cache(() => {
 			token: cookies().get('keystatic-gh-access-token')?.value,
 		});
 	} else {
-		// Not in draft mode (production/published content) OR draft mode is enabled but no branch cookie found.
-		// In both these cases, use the GitHub reader with the default production branch ('master').
-		// This ensures content is read from the main branch on Vercel when not in draft mode,
-		// and also handles the case where draft mode is on but the branch cookie is missing.
-		return createGitHubReader(keystaticConfig, {
-			repo: 'Dominicannard/dominicanna-blog',
-			ref: 'master', // Assuming 'master' is the production branch.
-			token: undefined, // No token needed for reading published content from the main branch.
-		});
+		return createReader(process.cwd(), keystaticConfig);
 	}
 });
 
