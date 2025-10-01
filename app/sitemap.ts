@@ -3,11 +3,6 @@ import { Reader } from '@/app/keystatic/utils'; // Import the Reader function
 import fs from 'fs';
 import path from 'path';
 
-// Helper function to get slug from filename
-const getSlugFromFilename = (filename: string): string => {
-  return path.parse(filename).name;
-};
-
 // Helper function to get last modified date from file stats
 const getLastModifiedDate = async (filePath: string): Promise<Date | undefined> => {
   try {
@@ -38,7 +33,7 @@ async function fetchPosts(): Promise<MetadataRoute.Sitemap> {
     const finalLastModified = lastModified || new Date(); // Fallback to current date
 
     return {
-      url: `${process.env.NEXT_PUBLIC_API_URL}/post/${post.slug}`, // Using environment variable
+      url: `${process.env.NEXT_PUBLIC_API_URL}/post/${post.slug}`,
       lastModified: finalLastModified,
     };
   });
