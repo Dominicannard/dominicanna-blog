@@ -11,7 +11,8 @@ const AdComponent: React.FC<AdComponentProps> = ({ adSlot, adFormat = 'auto', ad
   useEffect(() => {
     try {
       (window as any).adsbygoogle = (window as any).adsbygoogle || [];
-      (window as any).adsbygoogle.push({});
+      // Removed adsbygoogle.push({}) as it can cause duplicate ad errors if called multiple times.
+      // The AdSense script should handle processing ads automatically once loaded.
     } catch (e) {
       console.error('Error loading ads:', e);
     }
