@@ -4,45 +4,71 @@ import { IPost, ICategory, IPostResolved } from "@/app/keystatic/interface";
 import { createGitHubReader } from '@keystatic/core/reader/github';
 
 import { cache } from 'react';
-import { cookies, draftMode } from 'next/headers';
+import { cookies, draftMode, headers } from 'next/headers';
+
+// Helper to determine if we are in a static generation context.
+// This is a heuristic. If 'headers()' or 'cookies()' are not available, it's likely static generation.
+const isStaticGeneration = () => {
+	try {
+		// Attempt to access functions that are only available in a request scope.
+		// If they throw, we are likely in a static generation context.
+		headers();
+		cookies();
+		return false; // If no error, we are in a request scope.
+	} catch (e) {
+		// If headers() or cookies() throws, assume static generation context.
+		return true;
+	}
+};
 
 export const Reader = cache(() => {
+	// --- Static Generation Context ---
+	// If in static generation context, always use GitHub reader with the production branch.
+	// This avoids calling draftMode() or cookies() which are not available during SSG.
+	if (isStaticGeneration()) {
+		return createGitHubReader(keystaticConfig, {
+			repo: 'Dominicannard/dominicanna-blog',
+			ref: 'master', // Assuming 'master' is the production branch for published content.
+			token: undefined, // No token needed for reading published content from the main branch.
+		});
+	}
+
+	// --- Runtime Context ---
+	// If not in static generation, we are in a runtime context (API route, server component at runtime).
+	// Here, we can safely use draftMode() and cookies().
 	let isDraftModeEnabled = false;
-	// draftMode throws in e.g. generateStaticParams
+	let branch: string | undefined = undefined;
+
 	try {
 		isDraftModeEnabled = draftMode().isEnabled;
-	} catch {}
-
-	const branch = cookies().get('ks-branch')?.value;
+		branch = cookies().get('ks-branch')?.value;
+	} catch (e) {
+		// This catch is a safeguard for unexpected runtime issues, though isStaticGeneration() should prevent SSG issues.
+		console.warn("Unexpected error accessing draftMode or cookies in runtime context. Assuming not in draft mode.", e);
+		isDraftModeEnabled = false; // Default to not in draft mode if error occurs.
+	}
 
 	if (isDraftModeEnabled && branch) {
-		// Draft mode enabled and branch cookie found: use specific branch from cookie
+		// Draft mode enabled and branch cookie found: use specific branch from cookie.
 		return createGitHubReader(keystaticConfig, {
 			repo: 'Dominicannard/dominicanna-blog',
 			ref: branch,
 			token: cookies().get('keystatic-gh-access-token')?.value,
 		});
-	} else if (!isDraftModeEnabled) {
-		// Not in draft mode (production/published content): use default branch (e.g., 'main')
-		// This ensures content is read from the main branch on Vercel when not in draft mode.
-		return createGitHubReader(keystaticConfig, {
-			repo: 'Dominicannard/dominicanna-blog',
-			ref: 'master', // Assuming 'main' is the production branch
-			token: undefined, // No token needed for reading published content
-		});
 	} else {
-		// Draft mode enabled but no branch cookie found: this is an unexpected state for production.
-		// Log a warning and default to reading from the 'main' branch.
-		console.warn("Draft mode enabled but 'ks-branch' cookie not found. Defaulting to 'main' branch for content reading.");
+		// Not in draft mode (production/published content) OR draft mode is enabled but no branch cookie found.
+		// In both these cases, use the GitHub reader with the default production branch ('master').
+		// This ensures content is read from the main branch on Vercel when not in draft mode,
+		// and also handles the case where draft mode is on but the branch cookie is missing.
 		return createGitHubReader(keystaticConfig, {
 			repo: 'Dominicannard/dominicanna-blog',
-			ref: 'master', // Default to 'main' branch
-			token: cookies().get('keystatic-gh-access-token')?.value, // Token might still be useful if draft mode is on
+			ref: 'master', // Assuming 'master' is the production branch.
+			token: undefined, // No token needed for reading published content from the main branch.
 		});
 	}
 });
 
-// export const Reader = createReader(process.cwd(), keystaticConfig);
+// export const Reader = createReader(process.cwd(), keystaticConfig); // This line is commented out and should not be used in production.
 
 export const sortPostsByPublishDate = <T extends IPost | IPostResolved>(posts: T[]): T[] => {
 	return posts.slice().sort((postA: T, postB: T) => {
