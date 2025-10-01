@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
 	// Ensure posts is always an array, default to empty array if not
 	console.log("Reader Ready: ", await Reader());
 	console.log("Getting Posts: ", posts);
-	if (!Array.isArray(posts)) {
+	if (!Array.isArray(posts)) { 
 		posts = [];
 	}
 	posts = sortPostsByPublishDate(posts);
