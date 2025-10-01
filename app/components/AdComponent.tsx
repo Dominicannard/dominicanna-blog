@@ -17,7 +17,7 @@ const AdComponent: React.FC<AdComponentProps> = ({ adSlot, adFormat = 'auto', ad
       console.error('Error loading ads:', e);
     }
   }, []);
- 
+  
   return (
     <ins className="adsbygoogle"
          style={{ display: 'block' }}
