@@ -3,6 +3,7 @@
 import React, { Suspense, useEffect, useState } from "react";
 import { ICategory, IPost } from "@/app/keystatic/interface";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
 import Loading from "@/app/components/Loading";
 import dynamic from "next/dynamic";
 const PostGrid = dynamic(() => import("@/app/components/Post/PostGrid"), { ssr: false });
@@ -62,7 +63,7 @@ export default function SearchPage() {
 			(post: any) =>
 				post.slug.includes(q) ||
 				post.entry.title.toLowerCase().includes(q) ||
-				post.entry.categories.some((category) => category.toLowerCase().includes(q))
+				post.entry.categories.some((category: string) => category.toLowerCase().includes(q))
 		);
 		setResults(results);
 
@@ -96,15 +97,16 @@ export default function SearchPage() {
 							value={query}
 							onChange={(event) => setQuery(event.target.value)}
 							onKeyDown={handleEnterPress}
-							className="px-5 py-3 text-2xl font-heading focus:outline-sky-500 text-sky-500 border rounded-md w-full flex flex-1"
+							className="px-3 py-2 border-b-2 border-black w-full flex flex-1"
 						/>
 
-						<button
-							className="p-5 py-3 flex !text-white text-xl font-heading rounded-md !no-underline bg-sky-500 hover:bg-sky-700"
-							onClick={handleSearch}
+						<Link
+							id="Search"
+							className="p-5 py-2 flex !text-white rounded-xl !no-underline bg-black hover:opacity-70"
+							href={`/post/search?query=${query}`}
 						>
 							Search
-						</button>
+						</Link>
 					</div>
 				</div>
 			)}

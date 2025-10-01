@@ -16,14 +16,14 @@ export default async function CategoryPage({ params }: { params: { slug: string 
 	const categoryPosts = posts.filter((post) => post.entry.categories.includes(slug));
 
 	return (
-		<div className="category-page w-full py-10">
+		<div className="category-page w-full">
 			<h1 className="page-title text-gradient">
 				<span>{category?.category}</span>
 			</h1>
 			<div className="post-category">
-				<pre className="text-2xl text-center whitespace-pre-wrap">
-					{category?.description || "Grandes publicaciones sobre " + category?.category}
-				</pre>
+				<p className="text-xl text-center">
+					{category?.description || "Publicaciones sobre " + category?.category}
+				</p>
 			</div>
 			<div className="post-container mt-8">
 				<PostGridServer posts={categoryPosts} categories={categories} size="lg" />
