@@ -4,22 +4,7 @@ import { IPost, ICategory, IPostResolved } from "@/app/keystatic/interface";
 import { createGitHubReader } from '@keystatic/core/reader/github';
 
 import { cache } from 'react';
-import { cookies, draftMode, headers } from 'next/headers';
-
-// Helper to determine if we are in a static generation context.
-// This is a heuristic. If 'headers()' or 'cookies()' are not available, it's likely static generation.
-const isStaticGeneration = () => {
-	try {
-		// Attempt to access functions that are only available in a request scope.
-		// If they throw, we are likely in a static generation context.
-		headers();
-		cookies();
-		return false; // If no error, we are in a request scope.
-	} catch (e) {
-		// If headers() or cookies() throws, assume static generation context.
-		return true;
-	}
-};
+import { cookies, draftMode } from 'next/headers';
 
 export const Reader = cache(() => {
 	let isDraftModeEnabled = false;
@@ -27,14 +12,6 @@ export const Reader = cache(() => {
   try {
     isDraftModeEnabled = draftMode().isEnabled;
   } catch {}
-
-	if (isStaticGeneration()) {
-		return createGitHubReader(keystaticConfig, {
-			repo: 'Dominicannard/dominicanna-blog',
-			ref: 'master',
-			token: undefined, // No token needed for reading published content from the main branch.
-		});
-	}
 
   if (isDraftModeEnabled) {
     const branch = cookies().get('ks-branch')?.value;
