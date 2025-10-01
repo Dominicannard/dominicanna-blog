@@ -15,11 +15,12 @@ export default function LatestPost() {
 				setLoading(true);
 				
 				// Fetch posts
-				const postsRes = await fetch('/api/posts');
+				const apiUrl = "/";  
+				const postsRes = await fetch(`${apiUrl}api/posts`);
 				const postsData = await postsRes.json();
 				
 				// Fetch categories
-				const categoriesRes = await fetch('/api/posts/category');
+				const categoriesRes = await fetch(`${apiUrl}api/posts/category`);
 				const categoriesData = await categoriesRes.json();
 				
 				setPosts(postsData);

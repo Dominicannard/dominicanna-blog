@@ -61,7 +61,8 @@ export default function Banner({ props }: { props: readonly (string | null)[] })
                 // Use Promise.all to fetch all posts concurrently
                 const promises = validSlugs.map(async (slug) => {
                     try {
-                        const response = await fetch(`/api/posts/${slug}`); 
+												const apiUrl = "/";  
+                        const response = await fetch(`${apiUrl}/api/posts/${slug}`); 
                         if (!response.ok) { 
                             // Log the status and text for debugging
                             const errorText = await response.text();

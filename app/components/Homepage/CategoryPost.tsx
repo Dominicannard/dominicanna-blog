@@ -16,11 +16,12 @@ export default function CategoryPost({ categorySlug }: { categorySlug: string })
 				setLoading(true);
 				
 				// Fetch posts
-				const postsRes = await fetch('/api/posts');
+				const apiUrl = "/";  
+				const postsRes = await fetch(`${apiUrl}api/posts`);
 				const postsData = await postsRes.json();
 				
 				// Fetch categories
-				const categoriesRes = await fetch('/api/posts/category');
+				const categoriesRes = await fetch(`${apiUrl}api/posts/category`);
 				let categoriesData = await categoriesRes.json();
 
 				// Ensure categoriesData is always an array, default to empty array if not
