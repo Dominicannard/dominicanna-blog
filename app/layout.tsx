@@ -59,11 +59,10 @@ export default function RootLayout({
 				{process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT_ID && (() => {
 					try {
 						return (
-							<Script
-								async
-								src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT_ID}`}
-								crossOrigin="anonymous"
-							/>
+						<Script
+							async
+							src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT_ID}`}
+						/>
 						);
 					} catch (error) {
 						console.error("Error rendering Google AdSense script:", error);
