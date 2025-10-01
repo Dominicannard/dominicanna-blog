@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export default function PostLayout({ children }: { children: React.ReactNode }) {
 	return (
-		<div className="container m-auto mt-5 !px-0 md:!px-3 lg:!px-5 min-h-[80vh] flex flex-1 flex-col lg:flex-row gap-8 justify-start items-start">
+		<div className="container m-auto !px-0 md:!px-3 lg:!px-5 min-h-[80vh] flex flex-1 flex-col lg:flex-row gap-8 justify-start items-start">
 			<div className="main-container p-0  w-full max-w-[1200px] flex flex-col items-start flex-1">
 				{children}
 			</div>

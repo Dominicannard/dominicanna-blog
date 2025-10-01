@@ -15,7 +15,7 @@ export default async function Page() {
 
 	return (
 		<div className="posts w-full pb-10">
-			<h1 className="page-title text-gradient my-5">Blog</h1>
+			<h1 className="page-title text-gradient my-5">Noticias</h1>
 			{posts && categories && <PostGridServer posts={posts} categories={categories} size="lg" />}
 		</div>
 	);

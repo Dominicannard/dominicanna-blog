@@ -148,9 +148,14 @@ export default function Banner({ props }: { props: readonly (string | null)[] })
 											{/* Content Section */}
 											<div className="w-full md:w-1/2 flex flex-col justify-between py-2">
 												<div>
-													<h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 leading-tight">
-														{item?.title} {/* Use fetched data */}
-													</h2>
+
+													<Link 
+														href={`/post/${item.slug}` || "/"}
+													>
+														<h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 leading-tight">
+															{item?.title} {/* Use fetched data */}
+														</h2>
+													</Link>
 
 													<p className="text-base md:text-lg text-gray-600 mb-4 leading-relaxed">
 														{item?.summary?.length > 100

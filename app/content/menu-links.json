@@ -1,20 +1,28 @@
 {
   "items": [
     {
-      "menu": "About Us",
-      "url": "/about"
+      "menu": "Home",
+      "url": "/"
     },
     {
-      "menu": "Blog",
+      "menu": "Noticias",
       "url": "/post"
     },
     {
-      "menu": "Categories",
-      "url": "/post/category"
+      "menu": "Politica",
+      "url": "/post/category/politica"
     },
     {
-      "menu": "Authors",
-      "url": "/author"
+      "menu": "Salud",
+      "url": "/post/category/salud"
+    },
+    {
+      "menu": "Internacional",
+      "url": "/post/category/noticias-internacionales"
+    },
+    {
+      "menu": "Opinion",
+      "url": "/post/category/opinion"
     }
   ]
 }

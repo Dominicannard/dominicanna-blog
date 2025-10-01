@@ -65,10 +65,6 @@ h6 {
   @apply capitalize py-5 text-2xl md:text-3xl lg:text-4xl mx-auto text-center text-gradient;
 }
 
-.post-detail a {
-	@apply text-sky-500 no-underline hover:text-sky-600;
-}
-
 .sidebar {
 }
 

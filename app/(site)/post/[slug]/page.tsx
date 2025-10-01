@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import CategoryTags from "@/app/components/Post/CategoryTags";
 import Image from "next/image";
 import Loading from "@/app/components/Loading";
+import { Facebook, Linkedin, Twitter, Mail } from "lucide-react";
 
 import { Metadata, ResolvingMetadata } from "next";
 import { Reader } from "@/app/keystatic/utils";
@@ -55,13 +56,20 @@ export default async function PostPage({ params }: { params: { slug: string } })
 	if (!post) notFound();
 
 	const authors = await Promise.all(
-		post.authors.map(async (authorSlug) => ({
-			...(await Reader().collections.authors.read(authorSlug)),
-			slug: authorSlug,
-		}))
+		post.authors.map(async (authorSlug: string) => {
+			const authorData = await Reader().collections.authors.read(authorSlug);
+			return {
+				...(authorData as any), // Cast to any to satisfy the implicit any error, or define a proper type if available
+				slug: authorSlug,
+			};
+		})
 	);
 
 	const postContent = await post?.content();
+	// Construct the full URL for sharing. This needs to be done carefully for SSR.
+	// We use params.slug and assume the base URL is handled by the framework or can be inferred.
+	// For a more robust solution, consider using a library or a more explicit way to get the base URL.
+	const shareUrl = `${process.env.NEXT_PUBLIC_API_URL || ''}/post/${slug}`;
 
 	return (
 		<div className="post-detail w-full my-10 mt-5 m-auto flex flex-col gap-10  @container">
@@ -89,6 +97,36 @@ export default async function PostPage({ params }: { params: { slug: string } })
 						>
 							{post?.title}
 						</h1>
+						<div className="social-sharing-icons flex justify-center space-x-4 mt-2 mb-2"> 
+							<a 
+									href={`https://web.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`} 
+									target="_blank" 
+									rel="noopener noreferrer" 
+									className="text-gray-600 hover:text-gray-900">
+									<Facebook size={18} />
+							</a>
+							<a 
+									href={`https://x.com/intent/post?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(post.title || '')}`} 
+									target="_blank" 
+									rel="noopener noreferrer" 
+									className="text-gray-600 hover:text-gray-900">
+									<Twitter size={18} />
+							</a>
+							<a 
+									href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(post.title || '')}&summary=${encodeURIComponent(post.title || '')}`} 
+									target="_blank" 
+									rel="noopener noreferrer" 
+									className="text-gray-600 hover:text-gray-900">
+									<Linkedin size={18} />
+							</a>
+							<a 
+									href={`mailto:?subject=${encodeURIComponent(post.title || '')}`} 
+									target="_blank" 
+									rel="noopener noreferrer" 
+									className="text-gray-600 hover:text-gray-900">
+									<Mail size={18} />
+							</a>
+					</div>
 
 						{post?.categories && post.categories.length > 0 && (
 							<div className="post-categories w-full flex items-center justify-center">
@@ -105,9 +143,9 @@ export default async function PostPage({ params }: { params: { slug: string } })
 
 						{authors && authors.length > 0 && (
 							<div className="authors border-t mt-10 pt-5">
-								<h3 className="!m-5 text-2xl">Written by</h3>
+								<h4 className="!m-5 text-xl">Escrito por</h4>
 								<ul className="author-list list-none flex gap-4">
-									{authors.map((author) => (
+									{authors.map((author: any) => ( // Cast to any to satisfy the implicit any error, or define a proper type if available
 										<li className="author-item" key={author.slug}>
 											<Link
 												href={`/author/${author.slug}`}
@@ -137,5 +175,5 @@ export default async function PostPage({ params }: { params: { slug: string } })
 export async function generateStaticParams() {
 	const postSlugs = await Reader().collections.posts.list();
 
-	return postSlugs.map((postSlug) => ({ slug: postSlug }));
+	return postSlugs.map((postSlug: string) => ({ slug: postSlug }));
 }
