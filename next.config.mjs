@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        // unoptimized: true
+        // unoptimized: true,
+        domains: ['www.awin1.com'],
     },
     typescript: { ignoreBuildErrors: true },
 

@@ -6,6 +6,7 @@ import Loading from "./components/Loading";
 import { cookies, draftMode } from 'next/headers';
 import DraftModeIndicator from './components/DraftModeIndicator';
 import { PostHogProvider } from './providers'
+import Script from 'next/script';
 
 const inter = Inter({ subsets: ["latin"], variable: "--inter" });
 
@@ -18,7 +19,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--inter" });
 export const metadata: Metadata = {
 	title: "Dominicanna - Dominicanna es la primera revista dominicana dedicada al mundo del cannabis.",
 	description: "Dominicanna es la primera revista dominicana dedicada al mundo del cannabis.",
-}; 
+};
 
 const lobster = Lobster({
 	weight: ["400"],
@@ -54,6 +55,22 @@ export default function RootLayout({
 	const { isEnabled } = draftMode();
 	return (
 		<html lang="en">
+			<head>
+				{process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT_ID && (() => {
+					try {
+						return (
+							<Script
+								async
+								src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT_ID}`}
+								crossOrigin="anonymous"
+							/>
+						);
+					} catch (error) {
+						console.error("Error rendering Google AdSense script:", error);
+						return null; // Render nothing if there's an error
+					}
+				})()}
+			</head>
 			<body className={`${inter.className} ${fontVariables} `}>
 					<Suspense fallback={<Loading text="Loading..." />}>
 						<PostHogProvider>
