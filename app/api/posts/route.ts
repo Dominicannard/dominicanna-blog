@@ -14,8 +14,12 @@ export async function GET(request: NextRequest) {
 	console.log(searchParams);
 
 	try {
-		let posts = await Reader().collections.posts.all();
-		posts = sortPostsByPublishDate(posts);
+	let posts = await Reader().collections.posts.all();
+	// Ensure posts is always an array, default to empty array if not
+	if (!Array.isArray(posts)) {
+		posts = [];
+	}
+	posts = sortPostsByPublishDate(posts);
 
 		if (query) {
 			const q = query.toLowerCase();
