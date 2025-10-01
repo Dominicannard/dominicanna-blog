@@ -29,12 +29,12 @@ export default function CategoryPost({ categorySlug }: { categorySlug: string })
 				}
 				
 				// Filter posts by category slug (posts can have multiple categories)
-				const filteredPosts = postsData.filter((post: IPost) => 
+				const filteredPosts = postsData?.filter((post: IPost) => 
 					post.entry.categories && post.entry.categories.includes(categorySlug)
 				);
 				
 				// Find category name for title
-				const category = categoriesData.find((cat: ICategory) => 
+				const category = categoriesData?.find((cat: ICategory) => 
 					cat.slug === categorySlug
 				);
 
