@@ -3,7 +3,11 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
 	try {
-		const categories = await Reader().collections.categories.all();
+		let categories = await Reader().collections.categories.all();
+		// Ensure categories is always an array, default to empty array if not
+		if (!Array.isArray(categories)) {
+			categories = [];
+		}
 		const allPosts = await Reader().collections.posts.all();
 
 		const getPosts = (slug: string) => {
