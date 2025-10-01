@@ -22,50 +22,27 @@ const isStaticGeneration = () => {
 };
 
 export const Reader = cache(() => {
-	// --- Development Environment ---
-	const isDev = process.env.NODE_ENV === "development";
-	if (isDev) {
-		// Use the local reader for development.
-		// No need to access GitHub or draft mode features.
-		return createReader(process.cwd(), keystaticConfig);
-	}
-
-	// --- Static Generation Context ---
-	// If in static generation context, always use GitHub reader with the production branch.
-	// This avoids calling draftMode() or cookies() which are not available during SSG.
-	if (isStaticGeneration()) {
-		return createGitHubReader(keystaticConfig, {
-			repo: 'Dominicannard/dominicanna-blog',
-			ref: 'master', // Assuming 'master' is the production branch for published content.
-			token: undefined, // No token needed for reading published content from the main branch.
-		});
-	}
-
-	// --- Runtime Context in Production ---
-	// If not in static generation and not in development, we are in a runtime context (API route, server component at runtime).
-	// Here, we can safely use draftMode() and cookies().
 	let isDraftModeEnabled = false;
-	let branch: string | undefined = undefined;
+  // draftMode throws in e.g. generateStaticParams
+  try {
+    isDraftModeEnabled = draftMode().isEnabled;
+  } catch {}
 
-	try {
-		isDraftModeEnabled = draftMode().isEnabled;
-		branch = cookies().get('ks-branch')?.value;
-	} catch (e) {
-		// This catch is a safeguard for unexpected runtime issues.
-		console.warn("Unexpected error accessing draftMode or cookies in production runtime context. Assuming not in draft mode.", e);
-		isDraftModeEnabled = false; // Default to not in draft mode if error occurs.
-	}
+  if (isDraftModeEnabled) {
+    const branch = cookies().get('ks-branch')?.value;
 
-	if (isDraftModeEnabled && branch) {
-		// Draft mode enabled and branch cookie found: use specific branch from cookie.
-		return createGitHubReader(keystaticConfig, {
-			repo: 'Dominicannard/dominicanna-blog',
-			ref: branch,
-			token: cookies().get('keystatic-gh-access-token')?.value,
-		});
-	} else {
-		return createReader(process.cwd(), keystaticConfig);
-	}
+    if (branch) {
+      return createGitHubReader(keystaticConfig, {
+        // Replace the below with your repo org an name
+        repo: 'Dominicannard/dominicanna-blog',
+        ref: branch,
+        // Assuming an existing GitHub app
+        token: cookies().get('keystatic-gh-access-token')?.value,
+      });
+    }
+  }
+  // If draft mode is off, use the regular reader
+  return createReader(process.cwd(), keystaticConfig);
 });
 
 // export const Reader = createReader(process.cwd(), keystaticConfig); // This line is commented out and should not be used in production.
