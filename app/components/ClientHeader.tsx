@@ -41,8 +41,8 @@ export default function ClientHeader({ menuItems, categories }: ClientHeaderProp
 							))}
 						</ul>
 					)}
-					<div className="h-full flex justify-center items-center align-middle ml-4">
-						<button className="w-[35px] h-[35px] hover:bg-gray-100 rounded-full transition-colors text-gray-900 hover:text-gray-600 font-medium w-full h-full flex justify-center items-center" type="button" onClick={() => setShowMarquee(!showMarquee)}>...</button>
+					<div className="w-[35px] h-[35px] flex justify-center items-center align-middle ml-4">
+						<button className="hover:bg-gray-100 rounded-full transition-colors text-gray-900 hover:text-gray-600 font-medium w-full h-full flex justify-center items-center" type="button" onClick={() => setShowMarquee(!showMarquee)}>...</button>
 					</div>
 				</nav>
 				<div className="flex items-center gap-4 h-full">
