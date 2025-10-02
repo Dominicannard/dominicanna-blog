@@ -67,7 +67,7 @@ export default async function Banner({ posts }: { posts: Post[] }) {
 
     // Render the client component, passing the fetched data
     return (
-        <div className="w-full bg-white border-t-4 border-red-600">
+        <div className="w-full bg-white">
             <div className="w-full max-w-full" style={{ marginBottom: -5 }}>
                 <BannerSliderClient postsData={bannerPosts} />
             </div>
