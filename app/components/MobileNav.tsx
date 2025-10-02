@@ -20,7 +20,7 @@ export default function MobileNav({ menuItems }: MobileNavProps) {
 				<svg
 					className="w-6 h-6"
 					fill="none"
-					stroke="currentColor"
+					stroke="black"
 					viewBox="0 0 24 24"
 					xmlns="http://www.w3.org/2000/svg"
 				>
@@ -33,7 +33,7 @@ export default function MobileNav({ menuItems }: MobileNavProps) {
 				</svg>
 			</button>
 			{isMenuOpen && (
-				<div className="absolute top-16 left-0 w-full bg-white shadow-md">
+				<div className="absolute top-13 left-0 w-full bg-white shadow-md">
 					<ul className="nav menu flex flex-col items-center list-none gap-4 text-xl font-heading py-4">
 						{menuItems.map((item, index) => (
 							<li key={index}>
