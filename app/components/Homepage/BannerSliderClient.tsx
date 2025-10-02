@@ -47,8 +47,6 @@ export default function BannerSliderClient({ postsData }: BannerSliderClientProp
         groupedItems.push(postsData.slice(i, i + 2));
     }
 
-    console.log('post: ', groupedItems);
-
     return (
         <div className="w-full max-w-full" style={{ marginBottom: -5 }}>
             <Slider {...settings}>

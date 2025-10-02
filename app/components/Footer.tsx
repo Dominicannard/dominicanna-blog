@@ -10,6 +10,18 @@ export default async function Footer() {
 
 	return (
 		<footer className="bg-black text-white">
+			{/* Legal Disclaimer */}
+			<div className="bg-yellow-400 text-black text-center py-3 px-6 border-t-4 border-red-600">
+				<p className="font-bold text-lg uppercase tracking-wide">
+					⚠️ EL CONSUMO Y POSESIÓN DE MARIHUANA ES ILEGAL BAJO LA LEY N° 50-88 DE LA REPÚBLICA DOMINICANA
+				</p>
+				<p className="text-sm mt-1 font-semibold">
+					Las violaciones a esta ley pueden conllevar penas de prisión y multas significativas. No promuevemos ni facilitamos el consumo o posesión de sustancias controladas.
+					<br />
+					<i>este sitio web es de carácter exclusivamente informativo y educativo sobre legislación, políticas públicas y debates internacionales sobre la planta Cannabis Sativa L.</i>
+				</p>
+			</div>
+
 			<div className="container mx-auto px-6 py-6">
 				{/* Social Icons - Top Right */}
 				<div className="flex justify-end mb-8">
