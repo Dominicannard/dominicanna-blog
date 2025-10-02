@@ -27,11 +27,13 @@ export default async function HomePage() {
 		title: post.entry.title,
 	}));
 
+	const bannerPosts = homePage?.banner ? posts.filter((post) => homePage.banner.includes(post.slug)) : [];
+
 	return (
 		<div className="homepage pb-12">
 			{homePage?.banner && homePage.banner.length > 0 && (
 				<section className="p-0">
-					<Banner props={homePage.banner} />
+					<Banner posts={bannerPosts} />
 				</section>
 			)}
 			<FeaturedPost />
