@@ -18,7 +18,7 @@ export default async function Footer() {
 				<p className="text-sm mt-1 font-semibold">
 					Las violaciones a esta ley pueden conllevar penas de prisión y multas significativas. No promuevemos ni facilitamos el consumo o posesión de sustancias controladas.
 					<br />
-					<i>este sitio web es de carácter exclusivamente informativo y educativo sobre legislación, políticas públicas y debates internacionales sobre la planta Cannabis Sativa L.</i>
+					<i>este sitio web es de carácter exclusivamente informativo y educativo sobre legislación, cultura, políticas públicas y debates internacionales sobre la planta Cannabis Sativa L.</i>
 				</p>
 			</div>
 
