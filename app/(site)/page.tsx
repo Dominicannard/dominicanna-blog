@@ -29,6 +29,19 @@ export default async function HomePage() {
 
 	const bannerPosts = homePage?.banner ? posts.filter((post) => homePage.banner.includes(post.slug)) : [];
 
+	// Get category posts and titles
+	const cannabisMedicinalCategory = categories.find(cat => cat.slug === "cannabis-medicinal");
+	const cannabisMedicinalPosts = posts.filter(post =>
+		post.entry.categories && post.entry.categories.includes("cannabis-medicinal")
+	);
+	const cannabisMedicinalTitle = cannabisMedicinalCategory?.entry?.category || "cannabis-medicinal";
+
+	const saludCategory = categories.find(cat => cat.slug === "salud");
+	const saludPosts = posts.filter(post =>
+		post.entry.categories && post.entry.categories.includes("salud")
+	);
+	const saludTitle = saludCategory?.entry?.category || "salud";
+
 	return (
 		<div className="homepage pb-12">
 			{homePage?.banner && homePage.banner.length > 0 && (
@@ -41,9 +54,20 @@ export default async function HomePage() {
 			<div className="p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 				{/* Left column */}
 				<div className="col-span-1 md:col-span-1 lg:col-span-3 space-y-8">
-					<LatestPost />
-					<CategoryPost categorySlug="cannabis-medicinal" />
-					<CategoryPost categorySlug="salud" />
+					<LatestPost
+						posts={posts}
+						categories={categories}
+					/>
+					<CategoryPost
+						posts={cannabisMedicinalPosts}
+						categories={categories}
+						title={cannabisMedicinalTitle}
+					/>
+					<CategoryPost
+						posts={saludPosts}
+						categories={categories}
+						title={saludTitle}
+					/>
 				</div>
 
 				{/* Right column - Sticky Widget */}
