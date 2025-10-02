@@ -21,7 +21,7 @@ export default config({
 	storage: isDev ? localMode : githubMode,
 
 	ui: {
-		brand: { name: "La Keystatic" },
+		brand: { name: "Dominicanna" },
 		navigation: {
 			writing: ["posts", "authors", "categories"],
 			Header: ["menuLinks"],
