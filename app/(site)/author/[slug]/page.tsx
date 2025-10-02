@@ -3,10 +3,6 @@ import React from "react";
 import { createReader } from "@keystatic/core/reader";
 import keystaticConfig from "@/keystatic.config";
 import Image from "next/image";
-import Link from "next/link";
-import PostGrid from "@/app/components/Post/PostGrid";
-import ShowcaseLink from "@/app/components/Post/ShowcaseLink";
-import ShowcaseYoutube from "@/app/components/Post/ShowcaseYoutube";
 import { Reader } from "@/app/keystatic/utils";
 import PostGridServer from "@/app/components/Post/PostGridServer";
 
