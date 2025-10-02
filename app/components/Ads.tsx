@@ -4,7 +4,7 @@ import AdComponent from './AdComponent';
 
 const Ads: React.FC = () => {
   return (
-    <div className="ads-container">
+    <div className="ads-container" suppressHydrationWarning>
       <span>
         <AdComponent adSlot="7208043460" />
       </span>

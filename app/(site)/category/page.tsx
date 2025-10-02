@@ -23,8 +23,9 @@ export default async function CategoryPage() {
 	return (
 		<div className="category-page w-full p-3 lg:p-5 @container">
 			<h1 className="page-title">
-				<span>All Category Page</span>
+				<span>Todas las Categorías</span>
 			</h1>
+			<p className="text-center text-gray-600 mb-8">Explore las categorías principales de Dominicanna y descubre contenido relacionado con el mundo del cannabis.</p>
 
 			<div className="category-list w-full m-auto max-w-5xl py-5 grid grid-cols-1 @4xl:grid-cols-2 gap-10">
 				{categories.map((category) => (
@@ -48,7 +49,7 @@ export default async function CategoryPage() {
 						>
 							<div>
 								<h3 className="cate-name text-2xl">{category.entry.category}</h3>
-								{/* <p className="cate-desc">{category.entry.description}</p> */}
+								<p className="cate-desc text-sm">{category.entry.description}</p>
 							</div>
 
 							<div className="cate-total ">

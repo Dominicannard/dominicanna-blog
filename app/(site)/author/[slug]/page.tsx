@@ -24,48 +24,76 @@ export default async function AuthorPage({ params }: { params: { slug: string } 
 	const authorPosts = allPosts.filter((post) => post.entry.authors.includes(slug));
 
 	return (
-		<div className="my-10 flex gap-5 flex-col">
-			<div className="@container m-auto bg-white p-5 w-full rounded-lg shadow-lg max-w-7xl">
-				<div className="flex gap-5 flex-col @3xl:flex-row @3xl:gap-10">
-					<div className="author-image w-full max-w-[420px]">
+		<div className="my-10 flex gap-5 flex-col px-4">
+			<div className="@container m-auto bg-white p-6 md:p-10 w-full rounded-lg shadow-lg max-w-7xl border border-gray-100">
+				<div className="flex gap-8 flex-col @3xl:flex-row @3xl:gap-12 items-start">
+					<div className="author-image w-full @3xl:w-auto flex-shrink-0">
 						<Image
 							src={author?.avatar || "/images/avatar.jpg"}
 							alt={`Avatar for ${author?.name}`}
-							width={420}
-							height={420}
-							className="rounded-lg overflow-hidden aspect-square object-cover m-0"
+							width={300}
+							height={300}
+							className="rounded-xl overflow-hidden aspect-square object-cover w-80 h-80 border-4 border-gray-100 shadow-md"
 						/>
 					</div>
-					<div className="showcase w-full  flex-col flex flex-1">
-						<h1 className="page-title">Author {author?.name}</h1>
+					<div className="content w-full flex-col flex flex-1 min-w-0">
+						<h1 className="page-title text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">
+							{author?.name}
+						</h1>
 
 						{author?.introduce && (
-							<div className="author-introduce">
-								<pre className="text-lg max-w-2xl text-wrap font-inter">{author.introduce}</pre>
+							<div className="author-intro mb-8">
+								<h2 className="text-xl font-semibold text-gray-800 mb-3">Bio</h2>
+								<div className="text-gray-700 text-base leading-relaxed max-w-3xl whitespace-pre-wrap">
+									{author.introduce}
+								</div>
 							</div>
 						)}
-						{author?.showcase && author?.showcase.length > 0 && (
-							<>
-								<h3>ShowCase</h3>
 
-								<ul className="list-none m-0 !p-0 max-w-full">
+						{author?.showcase && author?.showcase.length > 0 && (
+							<div className="showcase-section mb-8">
+								<h2 className="text-xl font-semibold text-gray-800 mb-4">Showcase</h2>
+								<div className="showcase-items grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 									{author.showcase.map((item, index) => (
-										<li key={index}>
-											{item.discriminant === "link" && <ShowcaseLink url={item.value.url} label={item.value.label} />}
-											{item.discriminant === "youtubeVideoId" && <ShowcaseYoutube videoId={item.value} />}
-											{/* <pre>{JSON.stringify(item, null, 2)}</pre> */}
-										</li>
+										<div key={index} className="showcase-item p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors border border-gray-200">
+											{item.discriminant === "link" && (
+												<a
+													href={item.value.url || undefined}
+													target="_blank"
+													rel="noopener noreferrer"
+													className="block text-blue-600 hover:text-blue-800 font-medium hover:underline"
+												>
+													{item.value.label}
+												</a>
+											)}
+											{item.discriminant === "youtubeVideoId" && (
+												<a
+													href={`https://www.youtube.com/watch?v=${item.value}`}
+													target="_blank"
+													rel="noopener noreferrer"
+													className="block text-red-600 hover:text-red-800 font-medium hover:underline"
+												>
+													YouTube Video
+												</a>
+											)}
+										</div>
 									))}
-								</ul>
-							</>
+								</div>
+							</div>
 						)}
 					</div>
 				</div>
 
 				{authorPosts.length > 0 && (
-					<div className="post-written my-5 pt-5 border-t">
-						<h3 className="text-xl my-5">Posts written</h3>
+					<div className="posts-section my-8 pt-8 border-t border-gray-200">
+						<h2 className="text-2xl font-semibold text-gray-900 mb-6">Posts by {author.name || "Author"}</h2>
 						<PostGridServer posts={authorPosts} categories={categories} />
+					</div>
+				)}
+
+				{authorPosts.length === 0 && (
+					<div className="empty-posts my-8 pt-8 border-t border-gray-200 text-center">
+						<p className="text-gray-600 text-lg">No posts available from this author yet.</p>
 					</div>
 				)}
 			</div>
