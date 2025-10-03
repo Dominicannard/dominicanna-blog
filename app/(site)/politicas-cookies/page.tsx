@@ -60,7 +60,7 @@ export default function PoliticasCookiesPage() {
               Estas cookies recuerdan tus elecciones, como tu nombre, dirección de correo electrónico y preferencias de visualización. Mejoran tu experiencia personalizando el sitio.
             </p>
             <p className="text-sm text-gray-600">
-              <strong>Duración:</strong> 1 año o 2 semanas (si se selecciona "Recordarme").
+              <strong>Duración:</strong> 1 año o 2 semanas (si se selecciona &quot;Recordarme&quot;).
             </p>
           </div>
           <div className="bg-white border-b border-gray-300 p-4 hover:bg-gray-100 transition-colors">

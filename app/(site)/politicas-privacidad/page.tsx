@@ -22,7 +22,7 @@ export default function PoliticasPrivacidadPage() {
         </div>
         <div className="py-5 bg-white border-b border-gray-300 p-4">
           <p className="leading-relaxed text-gray-800">
-            Dominicanna es la primera revista dominicana en línea dedicada exclusivamente al mundo del cannabis. Con un enfoque informativo y educativo, la revista se posiciona como una plataforma para explorar y discutir diversos aspectos relacionados con esta planta y su impacto en la sociedad. A través de artículos, entrevistas, reportajes y análisis, Dominicanna busca brindar a sus lectores una visión integral sobre la marihuana, desde sus usos medicinales y terapéuticos hasta su influencia cultural y su potencial económico. Con un enfoque innovador y comprometido con la información precisa y actualizada, Dominicanna se convierte en un referente para aquellos interesados en conocer más sobre el cannabis en República Dominicana y en el mundo.
+            Dominicanna es la primera revista dominicana en línea dedicada exclusivamente al mundo del cannabis. Con un enfoque informativo y educativo, la revista se posiciona como una plataforma para explorar y discutir diversos aspectos relacionados con esta planta y su impacto en la sociedad. A través de artículos, entrevistas, reportajes y análisis, Dominicanna busca brindar a sus lectores una visión integral sobre la planta Cannabis Sativa L., desde sus usos medicinales y terapéuticos hasta su influencia cultural y su potencial económico. Con un enfoque innovador y comprometido con la información precisa y actualizada, Dominicanna se convierte en un referente para aquellos interesados en conocer más sobre el cannabis en República Dominicana y en el mundo.
           </p>
         </div>
       </div>
@@ -73,7 +73,7 @@ export default function PoliticasPrivacidadPage() {
             Si visitas nuestra página de inicio de sesión, estableceremos una cookie temporal para determinar si tu navegador acepta cookies. Esta cookie no contiene datos personales y se descarta cuando cierras tu navegador.
           </p>
           <p className="leading-relaxed text-gray-800 mb-4">
-            Cuando inicias sesión, también configuramos varias cookies para guardar tu información de inicio de sesión y tus opciones de visualización de pantalla. Las cookies de inicio de sesión tienen una duración de dos días y las cookies de opciones de pantalla tienen una duración de un año. Si seleccionas "Recordarme", tu inicio de sesión persistirá durante dos semanas. Si cierras la sesión de tu cuenta, las cookies de inicio de sesión se eliminarán.
+            Cuando inicias sesión, también configuramos varias cookies para guardar tu información de inicio de sesión y tus opciones de visualización de pantalla. Las cookies de inicio de sesión tienen una duración de dos días y las cookies de opciones de pantalla tienen una duración de un año. Si seleccionas &quot;Recordarme&quot;, tu inicio de sesión persistirá durante dos semanas. Si cierras la sesión de tu cuenta, las cookies de inicio de sesión se eliminarán.
           </p>
           <p className="leading-relaxed text-gray-800">
             Si editas o publicas un artículo, se guardará una cookie adicional en tu navegador. Esta cookie no incluye datos personales y simplemente indica el ID de publicación del artículo que acabas de editar. Expira después de 1 día.
