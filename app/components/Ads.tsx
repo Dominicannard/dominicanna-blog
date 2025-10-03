@@ -1,10 +1,16 @@
+'use client';
+
 import React from 'react';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import AdComponent from './AdComponent';
+
+const AdComponent = dynamic(() => import('./AdComponent'), {
+  ssr: false,
+});
 
 const Ads: React.FC = () => {
   return (
-    <div className="ads-container" suppressHydrationWarning>
+    <div className="ads-container">
       <span>
         <AdComponent adSlot="7208043460" />
       </span>
@@ -12,9 +18,8 @@ const Ads: React.FC = () => {
         <Image
           src="/images/ads/widget_ads.png"
           alt="Advertisement"
-          width={300} // Adjust width as needed
-          height={200} // Adjust height as needed
-          layout="responsive" // Or 'fixed', 'intrinsic', 'fill' depending on desired behavior
+          width={300}
+          height={200}
         />
       </a>
     </div>

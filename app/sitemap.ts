@@ -71,10 +71,29 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(), // Consider fetching actual last modified date for homepage if available
     },
     {
-      url: `${process.env.NEXT_PUBLIC_API_URL}/about`, // Your about page, using environment variable
-      lastModified: new Date(), // Consider fetching actual last modified date for about page if available
+      url: `${process.env.NEXT_PUBLIC_API_URL}/sobre-nosotros`,
+      lastModified: new Date(),
     },
-    // Add other static pages as needed
+    {
+      url: `${process.env.NEXT_PUBLIC_API_URL}/contact`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${process.env.NEXT_PUBLIC_API_URL}/politicas-privacidad`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${process.env.NEXT_PUBLIC_API_URL}/politicas-cookies`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${process.env.NEXT_PUBLIC_API_URL}/anuncios`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${process.env.NEXT_PUBLIC_API_URL}/mapa-del-sitio`,
+      lastModified: new Date(),
+    },
   ];
 
   return [...staticRoutes, ...posts, ...categories];

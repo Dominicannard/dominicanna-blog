@@ -23,7 +23,8 @@ const AdComponent: React.FC<AdComponentProps> = ({ adSlot, adFormat = 'auto', ad
          data-ad-client={process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT_ID}
          data-ad-slot={adSlot}
          data-ad-format={adFormat}
-         data-ad-layout={adLayout}></ins>
+         data-ad-layout={adLayout}
+         suppressHydrationWarning></ins>
   );
 };
 
