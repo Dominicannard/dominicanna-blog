@@ -52,7 +52,7 @@ async function fetchCategories(): Promise<MetadataRoute.Sitemap> {
       const lastModified = await getLastModifiedDate(filePath); // Await the async operation
 
       return {
-        url: `${process.env.NEXT_PUBLIC_API_URL}/category/${category.slug}`, // Using environment variable
+        url: `${process.env.NEXT_PUBLIC_API_URL}/post/category/${category.slug}`, // Using environment variable
         lastModified: lastModified || new Date(), // Fallback to current date if stat fails
       };
     })
