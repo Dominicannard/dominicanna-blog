@@ -1,4 +1,13 @@
 import React from "react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Política de Privacidad - Dominicanna",
+	description: "Política de privacidad de Dominicanna. Conoce cómo protegemos y utilizamos tu información personal.",
+	alternates: {
+		canonical: "/politicas-privacidad",
+	},
+};
 
 export default function PoliticasPrivacidadPage() {
   return (

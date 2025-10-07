@@ -1,6 +1,15 @@
 import React from "react";
 import Link from "next/link";
+import { Metadata } from "next";
 import { Reader } from "@/app/keystatic/utils";
+
+export const metadata: Metadata = {
+	title: "Mapa del Sitio - Dominicanna",
+	description: "Mapa del sitio de Dominicanna. Navega fácilmente por todas las secciones de nuestra revista sobre cannabis.",
+	alternates: {
+		canonical: "/mapa-del-sitio",
+	},
+};
 
 async function getSitemapData() {
   const reader = await Reader();

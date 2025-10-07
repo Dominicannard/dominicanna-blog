@@ -1,4 +1,13 @@
 import React from "react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Anuncios - Dominicanna",
+	description: "Información sobre publicidad y oportunidades publicitarias en Dominicanna, la primera revista dominicana dedicada al mundo del cannabis.",
+	alternates: {
+		canonical: "/anuncios",
+	},
+};
 
 export default function AnunciosPage() {
   return (

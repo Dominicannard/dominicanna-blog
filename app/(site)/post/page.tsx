@@ -3,8 +3,11 @@ import { Reader, sortPostsByPublishDate } from "@/app/keystatic/utils";
 import PostGridServer from "@/app/components/Post/PostGridServer";
 
 export const metadata: Metadata = {
-	title: "KeyStatic Post List",
-	description: "NextJs Post List",
+	title: "Noticias - Dominicanna",
+	description: "Todas las noticias y artículos sobre cannabis en República Dominicana. Información actualizada sobre la planta Cannabis Sativa L.",
+	alternates: {
+		canonical: "/post",
+	},
 };
 
 export default async function Page() {

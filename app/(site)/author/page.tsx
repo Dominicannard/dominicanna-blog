@@ -1,7 +1,16 @@
 import React from "react";
+import { Metadata } from "next";
 import { Reader } from "@/app/keystatic/utils";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+	title: "Autores - Dominicanna",
+	description: "Conoce a nuestros autores y colaboradores en Dominicanna, expertos en cannabis y temas relacionados.",
+	alternates: {
+		canonical: "/author",
+	},
+};
 
 export default async function AuthorsPage() {
 	const authors = await Reader().collections.authors.all();

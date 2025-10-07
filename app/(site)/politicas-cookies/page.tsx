@@ -1,4 +1,13 @@
 import React from "react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Política de Cookies - Dominicanna",
+	description: "Política de cookies de Dominicanna. Información sobre el uso de cookies en nuestro sitio web.",
+	alternates: {
+		canonical: "/politicas-cookies",
+	},
+};
 
 export default function PoliticasCookiesPage() {
   return (

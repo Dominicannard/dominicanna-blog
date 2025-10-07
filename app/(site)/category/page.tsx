@@ -2,7 +2,16 @@ import PostGrid from "@/app/components/Post/PostGrid";
 import { ICategory } from "@/app/keystatic/interface";
 import Link from "next/link";
 import React from "react";
+import { Metadata } from "next";
 import { Reader, sortPostsByPublishDate } from "@/app/keystatic/utils";
+
+export const metadata: Metadata = {
+	title: "Categorías - Dominicanna",
+	description: "Explora todas las categorías de Dominicanna y descubre contenido relacionado con el mundo del cannabis.",
+	alternates: {
+		canonical: "/category",
+	},
+};
 
 export default async function CategoryPage() {
 	//const slug = params.slug;

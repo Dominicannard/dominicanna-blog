@@ -1,6 +1,15 @@
 import dynamic from "next/dynamic";
 import React from "react";
+import { Metadata } from "next";
 import { Reader, sortPostsByPublishDate } from "@/app/keystatic/utils";
+
+export const metadata: Metadata = {
+	title: "Dominicanna - La primera revista dominicana dedicada al mundo del cannabis",
+	description: "Dominicanna es la primera revista dominicana dedicada al mundo del cannabis. Información, noticias y cultura sobre la planta Cannabis Sativa L.",
+	alternates: {
+		canonical: "/",
+	},
+};
 import Banner from "@/app/components/Homepage/Banner";
 import PostGrid from "@/app/components/Post/PostGrid";
 import Discovery from "@/app/components/Homepage/Discovery";

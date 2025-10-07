@@ -1,4 +1,13 @@
 import React from "react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Sobre Nosotros - Dominicanna",
+	description: "Conoce más sobre Dominicanna, la primera revista dominicana dedicada al mundo del cannabis.",
+	alternates: {
+		canonical: "/sobre-nosotros",
+	},
+};
 
 export default function SobreNosotrosPage() {
   return (

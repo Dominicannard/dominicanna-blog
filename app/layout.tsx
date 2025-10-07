@@ -18,6 +18,10 @@ const inter = Inter({ subsets: ["latin"], variable: "--inter" });
 export const metadata: Metadata = {
 	title: "Dominicanna - Dominicanna es la primera revista dominicana dedicada al mundo del cannabis.",
 	description: "Dominicanna es la primera revista dominicana dedicada al mundo del cannabis.",
+	metadataBase: new URL(process.env.NEXT_PUBLIC_API_URL || "https://www.dominicanna.net"),
+	alternates: {
+		canonical: "/",
+	},
 };
 
 const lobster = Lobster({

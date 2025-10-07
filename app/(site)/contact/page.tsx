@@ -1,4 +1,13 @@
 import React from 'react';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: "Contáctanos - Dominicanna",
+	description: "¿Tienes preguntas, sugerencias o deseas anunciar en Dominicanna? Estamos aquí para escucharte.",
+	alternates: {
+		canonical: "/contact",
+	},
+};
 
 export default function ContactPage() {
   return (
