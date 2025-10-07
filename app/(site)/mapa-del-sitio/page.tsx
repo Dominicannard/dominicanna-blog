@@ -99,7 +99,7 @@ export default async function MapaDelSitioPage() {
         <div className="py-5 space-y-3">
           {data.categories.map((category) => (
             <div key={category.slug} className="bg-white border-b border-gray-300 p-4 hover:bg-gray-100 transition-colors">
-              <Link href={`/category/${category.slug}`} className="block">
+              <Link href={`/post/category/${category.slug}`} className="block">
                 <span className="font-semibold text-black">{category.title}</span>
               </Link>
             </div>
