@@ -3,6 +3,25 @@ import { ICategory } from "@/app/keystatic/interface";
 import { Reader, getCategoryBySlug, sortPostsByPublishDate } from "@/app/keystatic/utils";
 import { notFound } from "next/navigation";
 import React from "react";
+import { Metadata } from "next";
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+	const category = await Reader().collections.categories.read(params.slug);
+
+	if (!category) {
+		return {
+			title: "Categoría no encontrada - Dominicanna",
+		};
+	}
+
+	return {
+		title: `${category.category} - Dominicanna`,
+		description: category.description || `Publicaciones sobre ${category.category} en Dominicanna`,
+		alternates: {
+			canonical: `/post/category/${params.slug}`,
+		},
+	};
+}
 
 export default async function CategoryPage({ params }: { params: { slug: string } }) {
 	const slug = params.slug;

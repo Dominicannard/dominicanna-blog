@@ -5,6 +5,25 @@ import keystaticConfig from "@/keystatic.config";
 import Image from "next/image";
 import { Reader } from "@/app/keystatic/utils";
 import PostGridServer from "@/app/components/Post/PostGridServer";
+import { Metadata } from "next";
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+	const author = await Reader().collections.authors.read(params.slug);
+
+	if (!author) {
+		return {
+			title: "Autor no encontrado - Dominicanna",
+		};
+	}
+
+	return {
+		title: `${author.name} - Dominicanna`,
+		description: author.introduce || `Conoce más sobre ${author.name}, autor en Dominicanna`,
+		alternates: {
+			canonical: `/author/${params.slug}`,
+		},
+	};
+}
 
 export default async function AuthorPage({ params }: { params: { slug: string } }) {
 	const { slug } = params;
