@@ -8,9 +8,6 @@ export const metadata: Metadata = {
 	metadataBase: new URL(process.env.NEXT_PUBLIC_API_URL || "https://www.dominicanna.net"),
 	title: "Dominicanna - Dominicanna es la primera revista dominicana dedicada al mundo del cannabis.",
 	description: "Dominicanna es la primera revista dominicana dedicada al mundo del cannabis.",
-	alternates: {
-		canonical: "/",
-	},
 };
 
 export default function PostLayout({ children }: { children: React.ReactNode }) {
