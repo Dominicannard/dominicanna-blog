@@ -22,6 +22,39 @@ export const metadata: Metadata = {
 	alternates: {
 		canonical: "/",
 	},
+	icons: {
+		icon: [
+			{ url: '/favicon.ico', sizes: 'any' },
+			{ url: '/favicon.ico', sizes: '16x16', type: 'image/x-icon' },
+			{ url: '/favicon.ico', sizes: '32x32', type: 'image/x-icon' },
+		],
+		shortcut: '/favicon.ico',
+		apple: '/favicon.ico',
+	},
+	manifest: '/manifest.json',
+	themeColor: '#000000',
+	openGraph: {
+		title: 'Dominicanna - La primera revista dominicana dedicada al mundo del cannabis',
+		description: 'Dominicanna es la primera revista dominicana dedicada al mundo del cannabis. Información, noticias y cultura sobre la planta Cannabis Sativa L.',
+		url: new URL(process.env.NEXT_PUBLIC_API_URL || "https://www.dominicanna.net"),
+		siteName: 'Dominicanna',
+		images: [
+			{
+				url: '/og_image.png',
+				width: 1200,
+				height: 630,
+				alt: 'Dominicanna - Revista Dominicana de Cannabis',
+			},
+		],
+		locale: 'es_DO',
+		type: 'website',
+	},
+	twitter: {
+		card: 'summary_large_image',
+		title: 'Dominicanna - La primera revista dominicana dedicada al mundo del cannabis',
+		description: 'Dominicanna es la primera revista dominicana dedicada al mundo del cannabis. Información, noticias y cultura sobre la planta Cannabis Sativa L.',
+		images: ['/og_image.png'],
+	},
 };
 
 const lobster = Lobster({
