@@ -44,10 +44,6 @@ const BannerAd: React.FC<BannerAdProps> = () => {
     {
       href: "https://www.awin1.com/cread.php?s=2987740&v=15607&q=348809&r=2598383",
       imgSrc: "https://www.awin1.com/cshow.php?s=2987740&v=15607&q=348809&r=2598383"
-    },
-    {
-      href: "https://www.awin1.com/cread.php?s=1012730&v=4032&q=173734&r=2598383",
-      imgSrc: "https://www.awin1.com/cshow.php?s=1012730&v=4032&q=173734&r=2598383"
     }
   ];
 
