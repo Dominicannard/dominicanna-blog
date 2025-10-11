@@ -15,6 +15,7 @@ interface IPostEntry {
   publishDate: string;
   authors?: string[];
   categories?: string[];
+  draft?: boolean;
 }
 
 interface IPost {
@@ -41,7 +42,7 @@ export default function FeaturedPost() {
   const [categories, setCategories] = useState<ICategory[]>([]); 
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("all");
-
+ 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -62,12 +63,20 @@ export default function FeaturedPost() {
     fetchData(); 
   }, []);
 
-  const filteredPosts = activeTab === "all" 
-    ? posts 
+  const filteredPosts = activeTab === "all"
+    ? posts
     : posts.filter(post => post.entry.categories?.includes(activeTab));
 
+  // Filter out draft posts
+  const publishedPosts = filteredPosts.filter(post => !post.entry.draft);
+
+  // Sort posts from recent to older (newest first)
+  const sortedPosts = publishedPosts.sort((a, b) =>
+    new Date(b.entry.publishDate).getTime() - new Date(a.entry.publishDate).getTime()
+  );
+
   // Get exactly 6 posts
-  const displayPosts = filteredPosts?.slice(0, 6);
+  const displayPosts = sortedPosts?.slice(0, 6);
   
   return (
     <>
