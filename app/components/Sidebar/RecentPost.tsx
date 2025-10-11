@@ -5,7 +5,8 @@ import React from "react";
 
 export default async function RecentPost({ postNumber }: { postNumber: number }) {
 	const allPosts = await Reader().collections.posts.all();
-	const recentPost = sortPostsByPublishDate(allPosts)?.slice(0, postNumber);
+	const publishedPosts = allPosts.filter(post => !post.entry.draft);
+	const recentPost = sortPostsByPublishDate(publishedPosts)?.slice(0, postNumber);
 
 	return (
 		<div className="w-full max-w-2xl font-sans"> {/* Main container */}
