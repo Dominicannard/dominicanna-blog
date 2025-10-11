@@ -31,7 +31,9 @@ export default async function CategoryPage({ params }: { params: { slug: string 
 	const categories = await Reader().collections.categories.all();
 	const category = await Reader().collections.categories.read(slug);
 	const allPosts = await Reader().collections.posts.all();
-	const posts = sortPostsByPublishDate(allPosts);
+	// Filter out draft posts
+	const publishedPosts = allPosts.filter(post => !post.entry.draft);
+	const posts = sortPostsByPublishDate(publishedPosts);
 	const categoryPosts = posts.filter((post) => post.entry.categories.includes(slug));
 
 	return (

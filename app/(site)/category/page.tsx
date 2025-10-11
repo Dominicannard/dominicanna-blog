@@ -19,6 +19,8 @@ export default async function CategoryPage() {
 
 	//const category = await getCategoryBySlug(slug);
 	let categoryPosts = await Reader().collections.posts.all();
+	// Filter out draft posts
+	categoryPosts = categoryPosts.filter(post => !post.entry.draft);
 	categoryPosts = sortPostsByPublishDate(categoryPosts);
 	const data = categoryPosts.map((post, index) => {
 		return {
