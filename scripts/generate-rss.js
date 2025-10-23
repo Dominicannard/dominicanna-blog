@@ -1,34 +1,87 @@
 const fs = require('fs');
 const path = require('path');
 
-async function fetchRssFromAPI() {
-  // Use the RSS API route to get the RSS feed
-  const site_url =
-    process.env.NODE_ENV === "production"
-      ? process.env.NEXT_PUBLIC_API_URL || "https://www.dominicanna.net"
-      : "http://localhost:3000";
-
-  const apiUrl = `${site_url}/api/rss`;
-
-  console.log('Getting RSS feed: ', apiUrl);
+async function fetchRssFromContent() {
+  const RSS = require('rss');
+  const matter = require('gray-matter');
+  const glob = require('glob');
 
   try {
-    const response = await fetch(apiUrl);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+    // Get all post files from the content directory
+    const postsPath = path.join(process.cwd(), 'app', 'content', 'posts', '*.mdoc');
+    const files = glob.sync(postsPath);
+
+    console.log(`Found ${files.length} post files`);
+
+    // Site configuration
+    const site_url =
+      process.env.NODE_ENV === "production"
+        ? process.env.NEXT_PUBLIC_API_URL || "https://www.dominicanna.net"
+        : "http://localhost:3000";
+
+    const feedOptions = {
+      title: "Dominicanna - Dominicanna es la primera revista dominicana dedicada al mundo del cannabis.",
+      description: "Dominicanna es la primera revista dominicana dedicada al mundo del cannabis. Información, noticias y cultura sobre la planta Cannabis Sativa L.",
+      site_url: site_url,
+      feed_url: `${site_url}/api/rss`,
+      image_url: `${site_url}/og_image.png`,
+      pubDate: new Date(),
+      copyright: `All rights reserved ${new Date().getFullYear()}, Dominicanna`,
+      language: "es-do",
+      webMaster: "hello.dominicanna@hotmail.com",
+      managingEditor: "hello.dominicanna@hotmail.com",
+      ttl: 60
+    };
+
+    const feed = new RSS(feedOptions);
+
+    // Process each post file
+    for (const file of files) {
+      try {
+        const fileContent = fs.readFileSync(file, 'utf8');
+        const { data, content } = matter(fileContent);
+
+        // Skip draft posts
+        if (data.draft) {
+          continue;
+        }
+
+        // Extract summary from content (first paragraph or first 200 characters)
+        const summary = data.summary || content.split('\n\n')[0].replace(/[#*`_~\[\]]/g, '').substring(0, 200) + '...';
+
+        // Create post URL
+        const postUrl = `${site_url}/post/${path.basename(file, '.mdoc')}`;
+
+        // Add item to RSS feed
+        feed.item({
+          title: data.title,
+          description: summary,
+          url: postUrl,
+          guid: postUrl,
+          date: data.publishDate ? new Date(data.publishDate) : new Date(),
+          categories: data.categories || [],
+          author: data.authors ? Array.from(data.authors).join(", ") : ""
+        });
+
+      } catch (error) {
+        console.error(`Error processing file ${file}:`, error.message);
+      }
     }
-    const rssXml = await response.text();
+
+    // Generate RSS XML
+    const rssXml = feed.xml({ indent: true });
     return rssXml;
+
   } catch (error) {
-    console.error('Error fetching RSS from API:', error);
+    console.error('Error generating RSS from content:', error);
     return null;
   }
 }
 
 async function generateRssFeed() {
   try {
-    // Fetch RSS feed from the API route
-    const rssXml = await fetchRssFromAPI();
+    // Fetch RSS feed from the API route 
+    const rssXml = await fetchRssFromContent();
 
     if (!rssXml) {
       console.error('Failed to fetch RSS feed from API');
