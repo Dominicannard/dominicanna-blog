@@ -61,6 +61,7 @@ async function fetchRssFromContent() {
           description: summary,
           url: postUrl,
           guid: postUrl,
+          image: data.heroImage,
           date: data.publishDate ? new Date(data.publishDate) : new Date(),
           categories: data.categories || [],
           author: data.authors ? Array.from(data.authors).join(", ") : "",
@@ -83,15 +84,16 @@ async function fetchRssFromContent() {
 
     // Add sorted posts to RSS feed
     validPosts.forEach(post => {
-      feed.item({
-        title: post.title,
-        description: post.description,
-        url: post.url,
-        guid: post.guid,
-        date: post.date,
-        categories: post.categories,
-        author: post.author
-      });
+        feed.item({
+          title: post.title,
+          description: post.description,
+          enclosure: { url: post.image, type: 'image/jpeg' }, // Assuming image/jpeg, adjust if needed
+          url: post.url,
+          guid: post.guid,
+          date: post.date,
+          categories: post.categories,
+          author: post.author
+        });
     });
 
     // Generate RSS XML
