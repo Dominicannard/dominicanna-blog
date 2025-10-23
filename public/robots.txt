@@ -3,4 +3,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dominicanna.net/sitemap.xml
+Sitemap: https://www.dominicanna.net/sitemap.xml

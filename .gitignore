@@ -8,6 +8,8 @@
 
 .env
 
+public/rss.xml
+
 # testing
 /coverage
 
