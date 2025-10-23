@@ -61,7 +61,7 @@ async function fetchRssFromContent() {
           description: summary,
           url: postUrl,
           guid: postUrl,
-          image: data.heroImage,
+          image: site_url + data.heroImage, // Ensure image URL is absolute
           date: data.publishDate ? new Date(data.publishDate) : new Date(),
           categories: data.categories || [],
           author: data.authors ? Array.from(data.authors).join(", ") : "",
