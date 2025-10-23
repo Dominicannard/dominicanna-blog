@@ -2,15 +2,6 @@ const fs = require('fs');
 const path = require('path');
 const RSS = require('rss');
 
-// Simplified Reader function for build-time usage (without React cache)
-async function createReader() {
-  const keystaticConfig = require('../keystatic.config.tsx');
-
-  // Use the local reader for build time (not GitHub reader)
-  const { createReader } = require('@keystatic/core/reader');
-  return createReader(path.join(process.cwd()), keystaticConfig.default || keystaticConfig);
-}
-
 // Simplified sort function (copy from utils)
 function sortPostsByPublishDate(posts) {
   return posts?.slice().sort((postA, postB) => {
@@ -29,6 +20,28 @@ function sortPostsByPublishDate(posts) {
     // Compare dates and return sort order
     return dateB.getTime() - dateA.getTime();
   });
+}
+
+async function fetchPostsFromAPI() {
+  // Use the existing API route to fetch posts
+  const site_url =
+    process.env.NODE_ENV === "production"
+      ? process.env.NEXT_PUBLIC_API_URL || "https://www.dominicanna.net"
+      : "http://localhost:3000";
+
+  const apiUrl = `${site_url}/api/posts`;
+
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const posts = await response.json();
+    return posts;
+  } catch (error) {
+    console.error('Error fetching posts from API:', error);
+    return [];
+  }
 }
 
 async function generateRssFeed() {
@@ -55,9 +68,8 @@ async function generateRssFeed() {
   const feed = new RSS(feedOptions);
 
   try {
-    // Fetch posts using Keystatic reader
-    const Reader = await createReader();
-    let posts = await Reader.collections.posts.all();
+    // Fetch posts using the existing API route
+    let posts = await fetchPostsFromAPI();
 
     // Ensure posts is always an array
     if (!Array.isArray(posts)) {
