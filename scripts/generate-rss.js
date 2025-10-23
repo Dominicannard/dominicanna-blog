@@ -35,7 +35,9 @@ async function fetchRssFromContent() {
 
     const feed = new RSS(feedOptions);
 
-    // Process each post file
+    // Process each post file and collect valid posts
+    const validPosts = [];
+
     for (const file of files) {
       try {
         const fileContent = fs.readFileSync(file, 'utf8');
@@ -43,6 +45,7 @@ async function fetchRssFromContent() {
 
         // Skip draft posts
         if (data.draft) {
+          console.log(`Skipping draft post: ${path.basename(file, '.mdoc')}`);
           continue;
         }
 
@@ -52,21 +55,44 @@ async function fetchRssFromContent() {
         // Create post URL
         const postUrl = `${site_url}/post/${path.basename(file, '.mdoc')}`;
 
-        // Add item to RSS feed
-        feed.item({
+        // Add to valid posts array
+        validPosts.push({
           title: data.title,
           description: summary,
           url: postUrl,
           guid: postUrl,
           date: data.publishDate ? new Date(data.publishDate) : new Date(),
           categories: data.categories || [],
-          author: data.authors ? Array.from(data.authors).join(", ") : ""
+          author: data.authors ? Array.from(data.authors).join(", ") : "",
+          publishDate: data.publishDate
         });
 
       } catch (error) {
         console.error(`Error processing file ${file}:`, error.message);
       }
     }
+
+    // Sort posts by publish date (most recent first)
+    validPosts.sort((a, b) => {
+      const dateA = a.date.getTime();
+      const dateB = b.date.getTime();
+      return dateB - dateA; // Descending order (most recent first)
+    });
+
+    console.log(`Found ${validPosts.length} published posts after filtering drafts`);
+
+    // Add sorted posts to RSS feed
+    validPosts.forEach(post => {
+      feed.item({
+        title: post.title,
+        description: post.description,
+        url: post.url,
+        guid: post.guid,
+        date: post.date,
+        categories: post.categories,
+        author: post.author
+      });
+    });
 
     // Generate RSS XML
     const rssXml = feed.xml({ indent: true });
