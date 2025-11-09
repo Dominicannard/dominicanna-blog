@@ -45,11 +45,23 @@ export default async function HomePage() {
 	);
 	const cannabisMedicinalTitle = cannabisMedicinalCategory?.entry?.category || "cannabis-medicinal";
 
-	const saludCategory = categories.find(cat => cat.slug === "salud");
-	const saludPosts = posts.filter(post =>
-		post.entry.categories && post.entry.categories.includes("salud")
+	const culturaCategory = categories.find(cat => cat.slug === "cultura");
+	const culturaPosts = posts.filter(post =>
+		post.entry.categories && post.entry.categories.includes("cultura")
 	);
-	const saludTitle = saludCategory?.entry?.category || "salud";
+	const culturaTitle = culturaCategory?.entry?.category || "cultura";
+
+	const opinionCategory = categories.find(cat => cat.slug === "opinion");
+	const opinionPosts = posts.filter(post =>
+		post.entry.categories && post.entry.categories.includes("opinion")
+	);
+	const opinionTitle = opinionCategory?.entry?.category || "opinion";
+
+	const politicaCategory = categories.find(cat => cat.slug === "politica");
+	const politicaPosts = posts.filter(post =>
+		post.entry.categories && post.entry.categories.includes("politica")
+	);
+	const politicaTitle = politicaCategory?.entry?.category || "politica";
 
 	return (
 		<div className="homepage pb-12">
@@ -73,9 +85,19 @@ export default async function HomePage() {
 						title={cannabisMedicinalTitle}
 					/>
 					<CategoryPost
-						posts={saludPosts}
+						posts={culturaPosts}
 						categories={categories}
-						title={saludTitle}
+						title={culturaTitle}
+					/>
+					<CategoryPost
+						posts={opinionPosts}
+						categories={categories}
+						title={opinionTitle}
+					/>
+					<CategoryPost
+						posts={politicaPosts}
+						categories={categories}
+						title={politicaTitle}
 					/>
 				</div>
 
