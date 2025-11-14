@@ -7,6 +7,7 @@ import MobileNav from "./MobileNav";
 import { ICategory } from "../keystatic/interface";
 import CategoriesMarquee from "./CategoriesMarquee";
 import { MenuItem } from "./Header";
+import { useRouter } from 'next/navigation'; // Import useRouter
 
 interface ClientHeaderProps {
 	menuItems: MenuItem[];
@@ -15,6 +16,7 @@ interface ClientHeaderProps {
 
 export default function ClientHeader({ menuItems, categories }: ClientHeaderProps) {
 	const [showMarquee, setShowMarquee] = useState(false);
+	const router = useRouter(); // Initialize router
 
 	return (
 		<header className="header w-full bg-white sticky top-0 z-50 border-b-4 border-red-600">
@@ -43,6 +45,16 @@ export default function ClientHeader({ menuItems, categories }: ClientHeaderProp
 					)}
 					<div className="w-[35px] h-[35px] flex justify-center items-center align-middle ml-4">
 						<button className="hover:bg-gray-100 rounded-full transition-colors text-gray-900 hover:text-gray-600 font-medium w-full h-full flex justify-center items-center" type="button" onClick={() => setShowMarquee(!showMarquee)}>...</button>
+					</div>
+					<div className="w-[35px] h-[35px] flex justify-center items-center align-middle">
+						<button
+							className="hover:bg-gray-100 rounded-full transition-colors text-gray-900 hover:text-gray-600 font-medium w-full h-full flex justify-center items-center"
+							type="button"
+							onClick={() => router.push('/games')} // Navigate to the games page
+						>
+							🎮
+							<span className="ml-2 absolute top-2">✨</span> {/* New Icon */}
+						</button> {/* Game Icon */}
 					</div>
 				</nav>
 				<div className="flex items-center gap-4 h-full">
