@@ -160,6 +160,57 @@ export default config({
 			},
 		}),
 
+		games: collection({
+			label: "Games",
+			slugField: "title",
+			path: "app/content/games/*",
+			format: { contentField: "content" },
+			entryLayout: "content",
+			columns: ["title", "description", "icon"],
+			schema: {
+				title: fields.slug({
+					name: { label: "Title" },
+				}),
+				description: fields.text({
+					label: "Description",
+					multiline: true,
+				}),
+				icon: fields.text({
+					label: "Icon",
+					description: "Icon identifier or URL",
+				}),
+				embedUrl: fields.text({
+					label: "Embed URL",
+					validation: { isRequired: false },
+				}),
+				content: fields.document({
+					label: "Content",
+					formatting: {
+						alignment: {
+							center: true,
+							end: true,
+						},
+						inlineMarks: true,
+						listTypes: {
+							ordered: true,
+							unordered: true,
+						},
+						headingLevels: [1, 2, 3, 4],
+						blockTypes: {
+							blockquote: true,
+							code: true,
+						},
+						softBreaks: true,
+					},
+					links: true,
+					images: {
+						directory: "public/images/games",
+						publicPath: "/images/games",
+					},
+				}),
+			},
+		}),
+
 		categories: collection({
 			label: "Categories",
 			slugField: "category",

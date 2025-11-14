@@ -61,6 +61,7 @@ export const sortPostsByPublishDate = <T extends IPost | IPostResolved>(posts: T
 };
 
 export const getCategoryBySlug = async (slug: string) => {
+	// @ts-ignore
 	let categories = await Reader().collections.categories.all();
 
 	// Ensure categories is always an array, default to empty array if not
