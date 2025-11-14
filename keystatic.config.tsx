@@ -23,7 +23,7 @@ export default config({
 	ui: {
 		brand: { name: "Dominicanna" },
 		navigation: {
-			writing: ["posts", "authors", "categories"],
+			writing: ["posts", "authors", "categories", "games"],
 			Header: ["menuLinks"],
 			Pages: ["homepage", "technology"],
 			Footer: ["socialLinks"],
