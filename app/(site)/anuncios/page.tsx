@@ -5,7 +5,7 @@ export const metadata: Metadata = {
 	title: "Anuncios - Dominicanna",
 	description: "Información sobre publicidad y oportunidades publicitarias en Dominicanna, la primera revista dominicana dedicada al mundo del cannabis.",
 	alternates: {
-		canonical: "/anuncios",
+		canonical: `${process.env.NEXT_PUBLIC_API_URL || "https://www.dominicanna.net"}/anuncios`,
 	},
 };
 

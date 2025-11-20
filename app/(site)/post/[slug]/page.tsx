@@ -33,7 +33,7 @@ export async function generateMetadata(
 		title: post?.title,
 		description: post?.title,
 		alternates: {
-			canonical: `/post/${params.slug}`,
+			canonical: `${process.env.NEXT_PUBLIC_API_URL || "https://www.dominicanna.net"}/post/${params.slug}`,
 		},
 		openGraph: {
 			images: [`../${post?.heroImage}`, ...previousImages],

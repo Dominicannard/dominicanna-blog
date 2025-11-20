@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 	title: "Mapa del Sitio - Dominicanna",
 	description: "Mapa del sitio de Dominicanna. Navega fácilmente por todas las secciones de nuestra revista sobre cannabis.",
 	alternates: {
-		canonical: "/mapa-del-sitio",
+		canonical: `${process.env.NEXT_PUBLIC_API_URL || "https://www.dominicanna.net"}/mapa-del-sitio`,
 	},
 };
 

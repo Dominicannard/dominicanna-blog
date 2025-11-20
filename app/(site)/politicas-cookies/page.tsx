@@ -5,7 +5,7 @@ export const metadata: Metadata = {
 	title: "Política de Cookies - Dominicanna",
 	description: "Política de cookies de Dominicanna. Información sobre el uso de cookies en nuestro sitio web.",
 	alternates: {
-		canonical: "/politicas-cookies",
+		canonical: `${process.env.NEXT_PUBLIC_API_URL || "https://www.dominicanna.net"}/politicas-cookies`,
 	},
 };
 

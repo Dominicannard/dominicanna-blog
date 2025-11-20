@@ -19,9 +19,6 @@ export const metadata: Metadata = {
 	title: "Dominicanna - Dominicanna es la primera revista dominicana dedicada al mundo del cannabis.",
 	description: "Dominicanna es la primera revista dominicana dedicada al mundo del cannabis.",
 	metadataBase: new URL(process.env.NEXT_PUBLIC_API_URL || "https://www.dominicanna.net"),
-	alternates: {
-		canonical: "/",
-	},
 	icons: {
 		icon: [
 			{ url: '/favicon.ico', sizes: 'any' },

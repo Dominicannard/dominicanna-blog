@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 		title: `${author.name} - Dominicanna`,
 		description: author.introduce || `Conoce más sobre ${author.name}, autor en Dominicanna`,
 		alternates: {
-			canonical: `/author/${params.slug}`,
+			canonical: `${process.env.NEXT_PUBLIC_API_URL || "https://www.dominicanna.net"}/author/${params.slug}`,
 		},
 	};
 }

@@ -5,7 +5,7 @@ export const metadata: Metadata = {
 	title: "Contáctanos - Dominicanna",
 	description: "¿Tienes preguntas, sugerencias o deseas anunciar en Dominicanna? Estamos aquí para escucharte.",
 	alternates: {
-		canonical: "/contact",
+		canonical: `${process.env.NEXT_PUBLIC_API_URL || "https://www.dominicanna.net"}/contact`,
 	},
 };
 

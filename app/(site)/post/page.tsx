@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 	title: "Noticias - Dominicanna",
 	description: "Todas las noticias y artículos sobre cannabis en República Dominicana. Información actualizada sobre la planta Cannabis Sativa L.",
 	alternates: {
-		canonical: "/post",
+		canonical: `${process.env.NEXT_PUBLIC_API_URL || "https://www.dominicanna.net"}/post`,
 	},
 };
 

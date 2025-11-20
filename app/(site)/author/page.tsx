@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 	title: "Autores - Dominicanna",
 	description: "Conoce a nuestros autores y colaboradores en Dominicanna, expertos en cannabis y temas relacionados.",
 	alternates: {
-		canonical: "/author",
+		canonical: `${process.env.NEXT_PUBLIC_API_URL || "https://www.dominicanna.net"}/author`,
 	},
 };
 

@@ -1,5 +1,14 @@
 import { Reader } from '@/app/keystatic/utils'; // Import the Reader
 import GameListClient from '@/app/components/Games/GameListClient'; // Import the new client component
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Juegos - Dominicanna",
+  description: "Descubre los juegos relacionados con el mundo del cannabis en Dominicanna.",
+  alternates: {
+    canonical: `${process.env.NEXT_PUBLIC_API_URL || "https://www.dominicanna.net"}/games`,
+  },
+};
 
 // Define a type for the game object fetched from the API/Reader
 // This should align with the structure returned by Reader().collections.games.all()

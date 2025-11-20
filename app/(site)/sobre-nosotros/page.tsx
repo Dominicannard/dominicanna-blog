@@ -5,7 +5,7 @@ export const metadata: Metadata = {
 	title: "Sobre Nosotros - Dominicanna",
 	description: "Conoce más sobre Dominicanna, la primera revista dominicana dedicada al mundo del cannabis.",
 	alternates: {
-		canonical: "/sobre-nosotros",
+		canonical: `${process.env.NEXT_PUBLIC_API_URL || "https://www.dominicanna.net"}/sobre-nosotros`,
 	},
 };
 

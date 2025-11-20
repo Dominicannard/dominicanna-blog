@@ -5,7 +5,7 @@ export const metadata: Metadata = {
 	title: "Política de Privacidad - Dominicanna",
 	description: "Política de privacidad de Dominicanna. Conoce cómo protegemos y utilizamos tu información personal.",
 	alternates: {
-		canonical: "/politicas-privacidad",
+		canonical: `${process.env.NEXT_PUBLIC_API_URL || "https://www.dominicanna.net"}/politicas-privacidad`,
 	},
 };
 
