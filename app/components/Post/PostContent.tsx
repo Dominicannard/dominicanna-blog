@@ -58,6 +58,22 @@ export default function PostContent({ postContent }: { postContent: any }) {
 								</figure>
 							);
 						},
+						paragraph: (props: any) => {
+							// Check if the paragraph starts with "También podría interesarte:"
+							const textContentChildren = props.children || "";
+							const textContent = textContentChildren[0].props.node.text || "";
+							console.log('textContent: ', textContent);
+							
+							if (textContent.trim().startsWith("También podría interesarte:")) {
+								return (
+									<div className="bg-yellow-400 text-black text-center py-3 px-6 border-t-4 border-red-600">
+										<p {...props} className="font-bold text-lg uppercase tracking-wide" />
+									</div>
+								);
+							}
+							// Default paragraph rendering
+							return <p {...props} />;
+						},
 					},
 				}}
 				componentBlocks={{
