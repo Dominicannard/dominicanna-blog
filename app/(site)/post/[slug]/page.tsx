@@ -9,6 +9,7 @@ import { Reader } from "@/app/keystatic/utils";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import PostContent from "@/app/components/Post/PostContent";
+import PostComments from "@/app/components/Post/PostComments";
 
 // const { NEXT_PUBLIC_API_URL } = process.env;
 
@@ -168,6 +169,13 @@ export default async function PostPage({ params }: { params: { slug: string } })
 								</ul>
 							</div>
 						)}
+
+						{/* Disqus Comments */}
+						<PostComments
+							url={shareUrl}
+							identifier={slug}
+							title={post.title || ''}
+						/>
 					</div>
 				</article>
 			</Suspense>

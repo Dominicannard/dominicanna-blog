@@ -81,6 +81,8 @@ export default function PostContent({ postContent }: { postContent: any }) {
 				}}
 			/>
 
+
+
 			{/* Modal for full-screen image view */}
 			{isModalOpen && (
 				<div
