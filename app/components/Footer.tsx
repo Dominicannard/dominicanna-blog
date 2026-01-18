@@ -16,7 +16,7 @@ export default async function Footer() {
 					⚠️ EL CONSUMO Y POSESIÓN DE MARIHUANA ES ILEGAL BAJO LA LEY N° 50-88 DE LA REPÚBLICA DOMINICANA
 				</p>
 				<p className="text-sm mt-1 font-semibold">
-					Las violaciones a esta ley pueden conllevar penas de prisión y multas significativas. No promuevemos ni facilitamos el consumo o posesión de sustancias controladas.
+					Las violaciones a esta ley pueden conllevar penas de prisión y multas significativas. No promovemos ni facilitamos el consumo o posesión de sustancias controladas.
 					<br />
 					<i>este sitio web es de carácter exclusivamente informativo y educativo sobre legislación, cultura, políticas públicas y debates internacionales sobre la planta Cannabis Sativa L.</i>
 				</p>
