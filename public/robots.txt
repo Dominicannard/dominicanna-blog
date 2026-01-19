@@ -3,4 +3,82 @@
 User-agent: *
 Allow: /
 
+# Preferred domain configuration
+Host: https://www.dominicanna.net
+
+# Sitemap location
 Sitemap: https://www.dominicanna.net/sitemap.xml
+
+# Crawl delay (optional)
+Crawl-delay: 5
+
+# Disallow specific files and directories that shouldn't be indexed
+Disallow: /api/
+Disallow: /_next/
+Disallow: /preview/
+Disallow: /keystatic/
+
+# Disallow common file types that shouldn't be indexed
+Disallow: /*.pdf$
+Disallow: /*.doc$
+Disallow: /*.xls$
+Disallow: /*.ppt$
+Disallow: /*.zip$
+Disallow: /*.tar$
+Disallow: /*.gz$
+Disallow: /*.bz2$
+Disallow: /*.7z$
+Disallow: /*.rar$
+Disallow: /*.exe$
+Disallow: /*.dmg$
+Disallow: /*.iso$
+Disallow: /*.apk$
+Disallow: /*.ipa$
+Disallow: /*.msi$
+Disallow: /*.deb$
+Disallow: /*.rpm$
+
+# Disallow development and configuration files
+Disallow: /*.env$
+Disallow: /*.git*
+Disallow: /*.svn*
+Disallow: /*.hg*
+Disallow: /*.bzr*
+Disallow: /*.cvs*
+Disallow: /*.bak$
+Disallow: /*.backup$
+Disallow: /*.old$
+Disallow: /*.orig$
+Disallow: /*.dist$
+Disallow: /*.min$
+Disallow: /*.map$
+Disallow: /*.swp$
+Disallow: /*.swo$
+Disallow: /*.tmp$
+Disallow: /*.temp$
+Disallow: /*.cache$
+Disallow: /*.lock$
+Disallow: /*.pid$
+Disallow: /*.sock$
+Disallow: /*.port$
+Disallow: /*.ipc$
+Disallow: /*.unix$
+
+# Disallow script and configuration files
+Disallow: /*.sh$
+Disallow: /*.bat$
+Disallow: /*.cmd$
+Disallow: /*.ps1$
+Disallow: /*.vbs$
+Disallow: /*.js$
+Disallow: /*.css$
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /*.txt$
+Disallow: /*.md$
+Disallow: /*.markdown$
+Disallow: /*.log$
+Disallow: /*.sql$
+Disallow: /*.conf$
+Disallow: /*.config$
+Disallow: /*.ini$
