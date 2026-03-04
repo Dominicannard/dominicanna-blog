@@ -6,6 +6,7 @@ import Loading from "./components/Loading";
 import { cookies, draftMode } from 'next/headers';
 import DraftModeIndicator from './components/DraftModeIndicator';
 import { PostHogProvider } from './providers'
+import { Analytics } from "@vercel/analytics/next"
 
 const inter = Inter({ subsets: ["latin"], variable: "--inter" });
 
@@ -97,6 +98,7 @@ export default function RootLayout({
 			</head>
 			<body className={`${inter.className} ${fontVariables} `}>
 					<Suspense fallback={<Loading text="Loading..." />}>
+						<Analytics />
 						<PostHogProvider>
 							{children}
 						</PostHogProvider>
