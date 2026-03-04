@@ -57,11 +57,6 @@ function buildCanonicalUrl(request: NextRequest): URL {
     normalizedPathname = normalizedPathname.toLowerCase()
   }
 
-  // Handle trailing slash consistency for non-file paths (after other normalizations)
-  if (!normalizedPathname.endsWith('/') && !normalizedPathname.includes('.') && normalizedPathname !== '/') {
-    normalizedPathname = `${normalizedPathname}/`
-  }
-
   // Apply path normalization
   canonicalUrl.pathname = normalizedPathname
 
